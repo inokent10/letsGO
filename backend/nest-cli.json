@@ -16,6 +16,15 @@
         "tsConfigPath": "libs/data-generation/tsconfig.lib.json"
       }
     },
+    "helpers": {
+      "type": "library",
+      "root": "libs/helpers",
+      "entryFile": "index",
+      "sourceRoot": "libs/helpers/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/helpers/tsconfig.lib.json"
+      }
+    },
     "interfaces": {
       "type": "library",
       "root": "libs/interfaces",
@@ -23,6 +32,15 @@
       "sourceRoot": "libs/interfaces/src",
       "compilerOptions": {
         "tsConfigPath": "libs/interfaces/tsconfig.lib.json"
+      }
+    },
+    "settings": {
+      "type": "library",
+      "root": "libs/settings",
+      "entryFile": "index",
+      "sourceRoot": "libs/settings/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/settings/tsconfig.lib.json"
       }
     }
   }

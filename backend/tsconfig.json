@@ -24,6 +24,18 @@
       "@data-generation/data-generation/*": [
         "libs/data-generation/src/*"
       ],
+      "backendSettings/settings": [
+        "libs/settings/src"
+      ],
+      "backendSettings/settings/*": [
+        "libs/settings/src/*"
+      ],
+      "helpers/helpers": [
+        "libs/helpers/src"
+      ],
+      "helpers/helpers/*": [
+        "libs/helpers/src/*"
+      ],
       "interfaces/interfaces": [
         "libs/interfaces/src"
       ],

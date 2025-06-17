@@ -1,5 +1,4 @@
 export interface Country {
-    id: string;
-    continent: string;
-    category: string;
+    name: string;
+    location: string;
 }

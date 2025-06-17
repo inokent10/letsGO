@@ -6,7 +6,8 @@ export interface User {
   countries: Country[];
   transport: string[];
   music: string[];
-  meal: string[];
+  meal: string;
+  hobby: string[];
   level: number;
   tags: string[];
   likes: number;
