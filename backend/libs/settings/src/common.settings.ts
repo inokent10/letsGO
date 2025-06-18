@@ -1,3 +1,5 @@
+export const DEFAULT_CARDS_PER_PAGE = 4;
+
 export const MusicStyle = {
     ROCK: 'Тяжёлый рок',
     RAP: 'Русский рэп',

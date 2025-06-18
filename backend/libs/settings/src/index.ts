@@ -1,1 +1,1 @@
-export { MusicStyle, Meal, Vehicle, Hobby } from "./common.settings";
+export { MusicStyle, Meal, Vehicle, Hobby, DEFAULT_CARDS_PER_PAGE } from "./common.settings";

@@ -1,1 +1,1 @@
-export { getRandomInteger } from "./common";
+export { getRandomInteger, fillDto } from "./common";
