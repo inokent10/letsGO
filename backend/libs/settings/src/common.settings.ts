@@ -1,4 +1,6 @@
 export const DEFAULT_CARDS_PER_PAGE = 4;
+export const USER_MAX_LEVEL = 100;
+export const DEFAULT_PAGE_NUMBER = 1;
 
 export const MusicStyle = {
     ROCK: 'Тяжёлый рок',
