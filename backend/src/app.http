@@ -12,7 +12,7 @@ Content-Type: application/json
     "tripDuration": "2",
     "isChildrenAccepted": "false",
     "startDate": "2025-06-20",
-    "finishDate": "2025-06-20",    
+    "finishDate": "2025-06-22",    
     "itinerary": [
         {
             "country": "string",
