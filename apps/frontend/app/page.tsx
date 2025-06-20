@@ -5,7 +5,7 @@ function FormPage() {
     <div>
       <h1>FORM STEP 1</h1>
       <Link href='/form/step2'>
-        <button>Это главная страница приложения на asds</button>
+        <button>Это главная страница приложения</button>
       </Link>
     </div>
   );
