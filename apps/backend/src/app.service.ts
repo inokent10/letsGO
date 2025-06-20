@@ -23,9 +23,6 @@ export class AppService {
   private validateItinerary(dto: ItineraryDto): [boolean, string[]] {
     const messages: string[] = []
     let status: boolean = true;
-    console.log('dto.startDate', dto.startDate)
-    console.log('dto.finishDate', dto.finishDate)
-    console.log('dayjs(dto.startDate).isAfter(dto.finishDate)', dayjs(dto.startDate).isAfter(dto.finishDate))
     if (dayjs(dto.startDate).isBefore(dayjs(Date.now()))) {
       status = false;
       messages.push('Дата начала путешествия уже наступила или уже в прошлом')

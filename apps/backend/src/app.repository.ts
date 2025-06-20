@@ -42,16 +42,13 @@ export class AppRepository {
         })
     }
 
-    public getUsers(query?: AppQueryDto): UsersWithPagaintion {
-        console.log('query', query);        
+    public getUsers(query?: AppQueryDto): UsersWithPagaintion {  
         const limit = query?.limit ?? DEFAULT_CARDS_PER_PAGE;
         const count = query?.count ?? limit ?? DEFAULT_CARDS_PER_PAGE;
         const page = query?.page ?? DEFAULT_PAGE_NUMBER;
         const take =  limit * page - count;
         const filteredUsers = (query) ? this.filterUsers(query) : this.users;
-        const slicedUsers = filteredUsers.slice(take, limit * page);
-        console.log('filteredUsers', filteredUsers);
-        console.log(take, limit * page)        
+        const slicedUsers = filteredUsers.slice(take, limit * page);    
 
         return {
             entities: slicedUsers,
@@ -69,7 +66,6 @@ export class AppRepository {
             this.countries = [...Object.values(countriesJson)]   
             return this.countries; 
         } catch (err) {
-            console.log('An error occured',  err);
             throw new InternalServerErrorException(err);
         } 
     }
