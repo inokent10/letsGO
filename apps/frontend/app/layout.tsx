@@ -1,12 +1,18 @@
+'use client';
 import Header from '@/src/components/header/header';
 import React from 'react';
 
 import '@/src/styles/global.scss';
 import Footer from '@/src/components/footer/footer';
+import { usePathname } from 'next/navigation';
+import { AppRoute, HEADER_TITLES } from '@/src/const';
 
 function RootLayout({ children }: {
   children: React.ReactNode
 }) {
+  const pathName = usePathname();
+  const dynamicHeaderTitle = pathName === AppRoute.FormPage ? HEADER_TITLES.DIRECTIONS : HEADER_TITLES.TRAVELERS;
+
   return (
     <html lang='ru'>
       <head>
@@ -17,7 +23,7 @@ function RootLayout({ children }: {
       </head>
       <body>
         <header>
-          <Header />
+          <Header title={dynamicHeaderTitle} />
         </header>
 
         <main>

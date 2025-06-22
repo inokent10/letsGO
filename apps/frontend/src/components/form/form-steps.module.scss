@@ -1,0 +1,47 @@
+.formLayout {
+    background-color: #FFFFFF;
+    border-radius: 45px;
+    max-width: 1320px;
+}
+
+.formWrapper {
+    padding: 30px 100px;
+}
+
+.titleBox {
+    min-width: 900px;
+}
+
+.stepTitle {
+    color: #1D2E5B;
+}
+
+.stepDescription {
+    color: #444444;
+    max-width: 510px;
+}
+
+.titleWrapper {
+    display: flex;
+}
+
+// .navigate {
+//     display: flex;
+//     font-size: 20px;
+//     gap: 20px;
+//     flex-direction: column;
+
+//     li {
+//         padding-left: 20px;
+//         color: #44444488;
+//     }
+// }
+
+// // .navigate li {
+// //     padding-left: 20px;
+// //     color: #44444488;
+// // }
+
+// .isActiveNavigate {
+//     color: #1D2E5B;
+// }

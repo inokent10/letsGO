@@ -1,9 +1,11 @@
-import styles from './footer.module.scss';
+import Link from 'next/link';
 
 function Footer() {
   return (
-    <div className={styles.footer}>
-      <img src='/logo_footer_full.png' alt='logo' className={styles.logo} />
+    <div className='footer'>
+      <Link href='/'>
+        <img src='/logo_footer_full.png' alt='logo' className='logo' />
+      </Link>
     </div>
   );
 }

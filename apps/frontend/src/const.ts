@@ -1,8 +1,14 @@
 enum AppRoute {
-    CatalogPage = '/',
-    FormPage = 'form'
+    FormPage = '/',
+    CatalogPage = '/catalog'
 };
+
+const HEADER_TITLES = {
+  DIRECTIONS: 'НАПРАВЛЕНИЯ',
+  TRAVELERS: 'ПОПУТЧИКИ',
+} as const;
 
 export {
   AppRoute,
+  HEADER_TITLES,
 };
