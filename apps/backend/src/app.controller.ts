@@ -8,7 +8,7 @@ import { AppQueryDto } from './dto/app-query.dto';
 import { UsersWithPagaintionRdo } from './rdo/users-with-pagination.rdo';
 import { ApiBody, ApiResponse, ApiTags } from '@nestjs/swagger';
 
-@ApiTags('app')
+@ApiTags('http://localhost:5000')
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
