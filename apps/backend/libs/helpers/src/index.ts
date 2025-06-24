@@ -1,0 +1,1 @@
+export { getRandomInteger, fillDto } from "./common";

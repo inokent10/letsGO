@@ -1,0 +1,1 @@
+export { userCardGenerator } from "./user-card-generator";
