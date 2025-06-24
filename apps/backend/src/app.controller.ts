@@ -3,7 +3,6 @@ import { AppService } from './app.service';
 import { fillDto } from 'helpers/helpers';
 import { CountryRdo } from './rdo/country.rdo';
 import { ItineraryDto } from './dto/itinerary.dto';
-import { UserRdo } from './rdo/user.rdo';
 import { AppQueryDto } from './dto/app-query.dto';
 import { UsersWithPagaintionRdo } from './rdo/users-with-pagination.rdo';
 import { ApiBody, ApiResponse, ApiTags } from '@nestjs/swagger';
@@ -20,13 +19,13 @@ export class AppController {
     return fillDto(CountryRdo, countries);
   }
 
-  @ApiResponse({ status: 201, description: 'План маршрута успешно сохранён', type: UserRdo})
+  @ApiResponse({ status: 201, description: 'План маршрута успешно сохранён', type: UsersWithPagaintionRdo})
   @ApiResponse({ status: 400, description: 'Ошибка валидации отправленных данных'})
   @ApiBody({ type: ItineraryDto })
   @Post('/itinerary')
-  uploadItinerary(@Body() dto: ItineraryDto): UserRdo {
+  uploadItinerary(@Body() dto: ItineraryDto): UsersWithPagaintionRdo {
     const users = this.appService.saveItinerary(dto);
-    return fillDto(UserRdo, users);
+    return fillDto(UsersWithPagaintionRdo, users);
   }
 
   @ApiResponse({ status: 200, description: 'Отправлен список карточек', type: UsersWithPagaintionRdo})

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 
 function StepTwo() {
+  
   return (
     <div>
       <h1>FORM STEP 2</h1>

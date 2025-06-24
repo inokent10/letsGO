@@ -1,5 +1,5 @@
 import { BadRequestException, Injectable} from '@nestjs/common';
-import { Country, User } from 'interfaces/interfaces';
+import { Country } from 'interfaces/interfaces';
 import { ItineraryDto } from './dto/itinerary.dto';
 import { AppRepository } from './app.repository';
 import *  as dayjs from 'dayjs';
@@ -38,7 +38,7 @@ export class AppService {
     return [status, messages]
   }
 
-  public saveItinerary(dto: ItineraryDto): User[] {
+  public saveItinerary(dto: ItineraryDto): UsersWithPagaintion {
     const result = this.validateItinerary(dto);
     if (!result.at(0)) {
       throw new BadRequestException(result.at(1))

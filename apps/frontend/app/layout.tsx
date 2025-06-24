@@ -1,4 +1,5 @@
 import React from 'react';
+import StoreProvider from './storeProvider';
 
 function RootLayout({ children }: {
   children: React.ReactNode
@@ -16,7 +17,10 @@ function RootLayout({ children }: {
           <h2>ЗАГОЛОВОК</h2>
         </header>
         <main>
-          {children}
+          <StoreProvider>
+            {children}
+          </StoreProvider>
+          
         </main>
       </body>
     </html>

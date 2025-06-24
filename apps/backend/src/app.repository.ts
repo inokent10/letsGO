@@ -70,8 +70,14 @@ export class AppRepository {
         } 
     }
 
-    public saveItinerary(_dto: ItineraryDto): User[] {
-        return this.users.slice(0, DEFAULT_CARDS_PER_PAGE)
+    public saveItinerary(_dto: ItineraryDto): UsersWithPagaintion {
+        return {
+            entities: this.users.slice(0, DEFAULT_CARDS_PER_PAGE),
+            totalPages: Math.ceil(this.users.length / DEFAULT_CARDS_PER_PAGE),
+            currentPage: DEFAULT_PAGE_NUMBER,
+            totalItems: this.users.length,
+            itemsPerPage: DEFAULT_CARDS_PER_PAGE,
+        }
     }
 
 }
