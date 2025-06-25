@@ -5,6 +5,7 @@ import { RootState } from '../store';
 import { ApiRoute } from '@/src/const';
 import { UsersWithPagaintion } from '@/src/types/users-with-pagination.interface';
 import { Query } from '@/src/types/query.interface';
+import { ItineraryPlan } from '@/src/types/itineraryPlan.interface';
 
 
 const uploadCountries = createAsyncThunk<
@@ -29,7 +30,7 @@ const uploadUserCards = createAsyncThunk<
 
 const sendItineraryPlan = createAsyncThunk<
   UsersWithPagaintion,
-  FormData,
+  ItineraryPlan,
   { dispatch: Dispatch; state: RootState; extra: AxiosInstance }
 >('sendItineraryPlan', async(itinerary, { extra: api }) => {
   const { data } = await api.post<UsersWithPagaintion>(ApiRoute.ITINERARY, itinerary);
