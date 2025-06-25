@@ -1,0 +1,14 @@
+.user-card {
+    display: grid;
+    grid-template-columns: 285px 1fr 120px 60px;
+    grid-template-areas: 'image name countries countries'
+                         'image tags countries countries'
+                         'image buttons transport level';    
+    column-gap: 52px;
+    max-width: 951px;
+    min-height: 285px;
+    background-color: #ffffff;
+    border-radius: 25px;
+
+}
+

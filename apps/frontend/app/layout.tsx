@@ -14,13 +14,12 @@ function RootLayout({ children }: {
       </head>
       <body>
         <header>
-          <h2>ЗАГОЛОВОК</h2>
+          <h2>Шапка</h2>
         </header>
         <main>
           <StoreProvider>
             {children}
-          </StoreProvider>
-          
+          </StoreProvider>          
         </main>
       </body>
     </html>

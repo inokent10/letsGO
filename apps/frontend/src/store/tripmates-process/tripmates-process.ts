@@ -30,7 +30,7 @@ const tripmatesProcess = createSlice({
         state.countries = action.payload;  
       })
       .addCase(uploadUserCards.fulfilled, (state, action) => {
-        if (!state.userCards || action.payload.currentPage === DEFAULT_CARDS_PER_PAGE) {
+        if (!state.userCards || action.payload.currentPage === DEFAULT_PAGE_NUMBER) {
           state.userCards = action.payload;
         } else {
           state.userCards = {
