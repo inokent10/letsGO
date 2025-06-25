@@ -10,7 +10,7 @@ export class UserItineraryDto {
     @ApiProperty({description: 'Описание плана путешествия',})
     @IsString()
     @IsOptional()
-    description: string;
+    description?: string;
 
     @ApiProperty({description: 'Порядковый номер страны в выбранном маршруте',})
     @IsNumber()

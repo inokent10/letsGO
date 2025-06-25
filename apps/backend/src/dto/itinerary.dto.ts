@@ -19,7 +19,8 @@ export class ItineraryDto {
     @Transform(({value}) => {
         if (value === 'true' || value === 'false') {
            return value === 'true' 
-        }        
+        }
+        return value === true        
     })
     isChildrenAccepted: boolean;
 
