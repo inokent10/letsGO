@@ -1,14 +1,12 @@
 'use client';
-
-import { DEFAULT_CARDS_PER_PAGE, DEFAULT_PAGE_NUMBER } from '@/src/const';
+import { DEFAULT_PAGE_NUMBER, DEFAULT_CARDS_PER_PAGE } from '@/src/const';
 import { useAppSelector, useAppStore } from '@/src/store/hooks';
 import { getUsers } from '@/src/store/tripmates-process/selectors';
 import { uploadUserCards } from '@/src/store/tripmates-process/thunk-actions';
 import Link from 'next/link';
 import { useEffect } from 'react';
 
-function FormPage() {
-  
+function CatalogPage() {
   const users = useAppSelector(getUsers);
   const store = useAppStore();
 
@@ -18,10 +16,10 @@ function FormPage() {
     }
   });
 
-  
   return (
     <div>
-      <h1>FORM STEP 1</h1>
+      <h1>I'm Catalog page</h1>
+
       {
         users &&
         <ol>
@@ -33,11 +31,11 @@ function FormPage() {
           })}
         </ol>
       }
-      <Link href='/form/step2'>
-        <button>Это главная страница приложения на asds</button>
+      <Link href='/'>
+        <button>НАЗАД</button>
       </Link>
     </div>
   );
 }
 
-export default FormPage;
+export default CatalogPage;

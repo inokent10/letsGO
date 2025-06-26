@@ -1,0 +1,162 @@
+.inputTripmates {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    font-size: 20px;
+    padding: 20px 0px;
+
+    @media (max-width: 843px) {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+.inputsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    @media (max-width: 843px) {
+        width: 100%;
+    }
+}
+
+.inputRow {
+    @media (max-width: 768px) {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+.inputWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    input {
+        border: none;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        background: transparent;
+
+        -webkit-appearance: none;
+        -moz-appearance: textfield;
+        appearance: none;
+
+        box-shadow: none;
+        border-radius: 0;
+
+        width: 100%;
+        margin: 0;
+        padding: 0;
+
+        font-size: inherit;
+        color: #1D2E5B;
+        font-family: inherit;
+    }
+
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0 30px transparent inset !important;
+        -webkit-text-fill-color: inherit !important;
+    }
+
+    button {
+        border: none;
+        background-color: inherit;
+        color: #CCCCCC;
+        font-size: 30px;
+        min-width: 40px;
+    }
+
+    button:hover {
+        cursor: pointer;
+        color: #1D2E5B;
+    }
+}
+
+.labelText {
+    white-space: nowrap;
+    
+    @media (max-width: 768px) {
+        font-size: 18px;
+    }
+}
+
+.inputBox {
+    display: flex;
+    border: 1px #CBCED9 solid;
+    align-items: center;
+
+    width: 180px;
+    height: 70px;
+
+    @media (max-width: 768px) {
+        width: 100%;
+        max-width: 250px;
+        height: 60px;
+    }
+
+    &--second {
+        margin-left: 17px;
+        
+        @media (max-width: 768px) {
+            margin-left: 0;
+        }
+    }
+}
+
+.labelsRow {
+    @media (max-width: 768px) {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 250px;
+        margin: 0 auto;
+    }
+}
+
+.checkboxChild {
+    display: flex;
+    margin-top: 5px;
+    
+    @media (max-width: 843px) {
+        margin-top: 0;
+        align-self: flex-start;
+    }
+    
+    label {
+        display: flex;
+        gap: 8px;
+        cursor: pointer;
+        
+        @media (max-width: 768px) {
+            font-size: 18px;
+        }
+    }
+    
+    input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        margin: 1px;
+        cursor: pointer;
+    }
+}

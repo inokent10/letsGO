@@ -2,8 +2,13 @@ const DEFAULT_CARDS_PER_PAGE = 4;
 const DEFAULT_PAGE_NUMBER = 1;
 
 enum AppRoute {
-    CatalogPage = '/',
-    FormPage = 'form'
+    FormPage = '/',
+    CatalogPage = '/catalog'
+};
+
+const HEADER_TITLES = {
+  DIRECTIONS: 'НАПРАВЛЕНИЯ',
+  TRAVELERS: 'ПОПУТЧИКИ',
 };
 
 enum ApiRoute {
@@ -19,6 +24,7 @@ const ApiSettings = {
 
 export {
   AppRoute,
+  HEADER_TITLES,
   ApiRoute,
   ApiSettings,
   DEFAULT_PAGE_NUMBER,

@@ -1,0 +1,40 @@
+.buttonWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nextButton {
+    background-color: #A8D2F4;
+    border-style: none  ;
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    min-width: 186px;
+
+    font-weight: 700;
+    font-size: 16px;
+    color: #1D2E5B;
+}
+
+.prevButton {
+    background-color: inherit;
+    border: none;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    min-width: 186px;
+
+    font-weight: 700;
+    font-size: 16px;
+    color: #1D2E5B;
+}
+
+.nextButton:hover {
+    cursor: pointer;
+}
+
+.prevButton:hover {
+    cursor: pointer;
+}
