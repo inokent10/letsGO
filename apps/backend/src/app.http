@@ -1,0 +1,35 @@
+# Get list of countries
+GET http://localhost:5000/countries  HTTP/1.1
+
+###
+
+# Send itinerary plan
+POST http://localhost:5000/itinerary  HTTP/1.1
+Content-Type: application/json
+
+{
+    "tripmatesCount": "3",
+    "tripDuration": "2",
+    "isChildrenAccepted": "false",
+    "startDate": "2025-06-20",
+    "finishDate": "2025-06-22",    
+    "itinerary": [
+        {
+            "country": "string",
+            "description": "string",
+            "position": "1"
+        },
+        {
+            "country": "string",
+            "description": "string",
+            "position": "2"
+        }
+    ]
+}
+
+###
+
+# Get users list with or without filters
+GET http://localhost:5000/catalog?page=2&limit=10&hobby=Спортзал&music=Евроденс&levelMin=68  HTTP/1.1
+
+###
