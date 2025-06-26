@@ -1,11 +1,17 @@
 'use client';
 import { useState } from 'react';
-import styles from './form-steps.module.scss';
+import { useRouter } from 'next/navigation';
+
+import { AppRoute } from '@/src/const';
+
 import Points from './points/points';
 import { POINTS } from './form-const';
-import { useRouter } from 'next/navigation';
-import { AppRoute } from '@/src/const';
-import FormButtons from '../buttons/form-buttons';
+
+import ButtonsForm from '../buttons/buttons-form';
+import Calendar from '../calendar/calendar';
+import CompanionsDurationInputs from './inputs/inputs-step1/companions-duration-inputs';
+
+import styles from './form-steps.module.scss';
 
 function FormSteps() {
   const router = useRouter();
@@ -35,14 +41,20 @@ function FormSteps() {
         <div className={styles.titleWrapper}>
           <div className={styles.titleBox}>
             <h1 className={styles.stepTitle}>Шаг 1. Даты пребывания</h1>
-            <p className={styles.stepDescription}>Укажите предпочтительное количество попутчиков, которых
-        вы хотели бы позвать в поездку, и ее предполагаемую длительность.</p>
+            <p className={styles.stepDescription}>
+              Укажите предпочтительное количество попутчиков, которых<br/>
+              вы хотели бы позвать в поездку, и ее предполагаемую длительность.
+            </p>
           </div>
 
           <Points activePoint={currentPoint} />
         </div>
 
-        <FormButtons 
+        <CompanionsDurationInputs />
+          
+        <Calendar />
+
+        <ButtonsForm 
           handlerNextStep={onNextStep} 
           handlerPrevStep={onPrevStep} 
           handlerSubmit={onSubmit}

@@ -2,7 +2,7 @@ body {
   margin: 0;
   background-color: #EDEFF6;
   font-family: -apple-system, 'Roboto', sans-serif;
-
+  color: #1D2E5B;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -12,12 +12,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  
-  background-color: #AED0EB;
-  border-radius: 45px 45px 0 0;
   flex: 1;
-  padding: 20px;
-  min-height: 0;
 
   margin-bottom: -45px;
   margin-top: 65px;

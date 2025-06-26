@@ -1,4 +1,4 @@
-import styles from './form-buttons.module.scss';
+import styles from './buttons-form.module.scss';
 
 interface ButtonsProps {
     handler?: () => void;
@@ -48,7 +48,7 @@ function SubmitButton({ handler }: ButtonsProps) {
   );
 };
 
-function FormButtons({
+function ButtonsForm({
   handlerNextStep,
   handlerPrevStep,
   handlerSubmit,
@@ -79,4 +79,4 @@ function FormButtons({
   );
 }
 
-export default FormButtons;
+export default ButtonsForm;
