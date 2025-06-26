@@ -49,6 +49,21 @@ const Vehicle = {
   NONE: 'Пешком',
 } as const;
 
+const flagIcons = [
+  'Australia.svg',
+  'Belgium.svg',
+  'Bosnia and Herzegovina.svg',
+  'Czechia.svg',
+  'Dominica.svg',
+  'France.svg',
+  'Germany.svg',
+  'Seychelles.svg',
+  'Sri Lanka.svg',
+  'Thailand.svg',
+  'UK.svg',
+  'USA.svg',
+];
+
 export {
   AppRoute,
   ApiRoute,
@@ -60,4 +75,5 @@ export {
   Meal,
   Hobby,
   MusicStyle,
+  flagIcons,
 };

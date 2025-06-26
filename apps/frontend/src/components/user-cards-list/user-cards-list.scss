@@ -12,6 +12,6 @@
     list-style-type: none;
 }
 
-.user-cards-list li:not(:last-child) {
+.user-cards-list > li:not(:last-child) {
     margin-bottom: 30px;
 }
