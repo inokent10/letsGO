@@ -11,6 +11,13 @@ const HEADER_TITLES = {
   TRAVELERS: 'ПОПУТЧИКИ',
 };
 
+enum Continent {
+    EROUPE = 'Европа',
+    ASIA = 'Азия',
+    AMERICA = 'Америка',
+    ISLANDS = 'Острова',
+};
+
 enum ApiRoute {
   CATALOG = '/catalog',
   COUNTRIES = '/countries',
@@ -22,6 +29,46 @@ const ApiSettings = {
   API_TIMEOUT: 5000,
 } as const;
 
+const MusicStyle = {
+  ROCK: 'Тяжёлый рок',
+  RAP: 'Русский рэп',
+  DANCE: 'Евроденс',
+} as const;
+
+const Hobby = {
+  FITNESS: 'Спортзал',
+  RAP: 'Кальян',
+  LAZYBONE: 'Диван',
+} as const;
+
+const Meal = {
+  MEAT: 'Мясоед',
+  HEALTH: 'Сидит на ПП',
+  VEGAN: 'Веган-сыроед',
+} as const;
+
+const Vehicle = {
+  AIRPLANE: 'Самолёт',
+  CAR: 'Автомобиль',
+  BIKE: 'Велосипед',
+  NONE: 'Пешком',
+} as const;
+
+const flagIcons = [
+  'Australia.svg',
+  'Belgium.svg',
+  'Bosnia and Herzegovina.svg',
+  'Czechia.svg',
+  'Dominica.svg',
+  'France.svg',
+  'Germany.svg',
+  'Seychelles.svg',
+  'Sri Lanka.svg',
+  'Thailand.svg',
+  'UK.svg',
+  'USA.svg',
+];
+
 export {
   AppRoute,
   HEADER_TITLES,
@@ -29,4 +76,10 @@ export {
   ApiSettings,
   DEFAULT_PAGE_NUMBER,
   DEFAULT_CARDS_PER_PAGE,
+  Continent,
+  Vehicle,
+  Meal,
+  Hobby,
+  MusicStyle,
+  flagIcons,
 };

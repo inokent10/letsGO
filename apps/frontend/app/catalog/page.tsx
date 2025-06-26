@@ -1,39 +1,16 @@
-'use client';
-import { DEFAULT_PAGE_NUMBER, DEFAULT_CARDS_PER_PAGE } from '@/src/const';
-import { useAppSelector, useAppStore } from '@/src/store/hooks';
-import { getUsers } from '@/src/store/tripmates-process/selectors';
-import { uploadUserCards } from '@/src/store/tripmates-process/thunk-actions';
-import Link from 'next/link';
-import { useEffect } from 'react';
+import './catalog.scss';
 
-function CatalogPage() {
-  const users = useAppSelector(getUsers);
-  const store = useAppStore();
+import FilterByCountry from '@/src/components/filter-by-country/filter-by-country';
+import FilterByTripmates from '@/src/components/filter-by-tripmates/filter-by-tripmates';
+import UserCardsList from '@/src/components/user-cards-list/user-cards-list';
+import type { JSX } from 'react';
 
-  useEffect(() => {
-    if (!users) {
-      store.dispatch(uploadUserCards({ page: DEFAULT_PAGE_NUMBER, limit: DEFAULT_CARDS_PER_PAGE, count: DEFAULT_CARDS_PER_PAGE }));
-    }
-  });
-
+function CatalogPage(): JSX.Element {
   return (
-    <div>
-      <h1>I'm Catalog page</h1>
-
-      {
-        users &&
-        <ol>
-          {users.map((user, index) => {
-            return (
-              <li key={index}>{user.name}</li>
-              
-            );
-          })}
-        </ol>
-      }
-      <Link href='/'>
-        <button>НАЗАД</button>
-      </Link>
+    <div className='catalog-container'>
+      <FilterByCountry />
+      <UserCardsList />
+      <FilterByTripmates />
     </div>
   );
 }

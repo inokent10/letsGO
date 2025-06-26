@@ -1,0 +1,203 @@
+.user-card {
+    display: grid;
+    grid-template-columns: 285px 1fr 120px 60px;
+    grid-template-rows: 26px repeat(3, auto) 22px;
+    grid-template-areas: 'image . . .'
+                         'image name countries countries'
+                         'image tags countries countries'
+                         'image buttons transport level'
+                         'image . . .';    
+    column-gap: 52px;
+    row-gap: 20px;
+    max-width: 951px;
+    min-height: 285px;
+    padding-right: 43px;
+    background-color: #ffffff;
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.clear-list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.card-image {
+    grid-area: image;
+    align-self: stretch;
+    object-fit: contain;      
+}
+
+.card-name {
+    grid-area: name;
+    align-self: start;
+    min-height: 30px;    
+}
+
+.card-tags {
+    grid-area: tags;
+    max-width: 226px;
+    align-self: start;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 25px;    
+}
+
+.card-countries {
+    grid-area: countries;
+    align-self: start;
+    padding-top: 3px;
+    margin-bottom: 25px;     
+}
+
+.card-country-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 13px;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #1d2e5b;   
+}
+
+.card-country-item:last-child {
+    margin-bottom: 0;
+}
+
+.card-country-flag {
+    margin-right: 18px;
+}
+
+.card-buttons {
+    align-self: center;
+    display: flex;
+    align-items: center;
+    grid-area: buttons;    
+    color: #161c35;
+    font-weight: 700; 
+}
+
+.card-btn {    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50px;
+    padding: 0;
+    margin: 0;
+    margin-right: 4px; 
+    border: none;    
+}
+
+.card-invite-btn {
+    width: 150px;   
+    background-color: #a8d2f4;
+    font: inherit;
+    text-transform: uppercase;
+    border-radius: 25px;
+}
+
+.card-like-btn {
+    width: 50px;
+    background-color: #e2e5f2;
+    border-radius: 50%;    
+}
+
+.like-btn-icon {
+    margin: 0;
+    padding: 0;
+    fill: #192144;
+    opacity: 0.5;
+}
+
+.card-transport {
+    min-width: 120px;
+    grid-area: transport;
+    align-self: center;
+    display: flex;
+    justify-content: space-between;    
+}
+
+.card-transport-item {
+    width: 22px;
+    height: 22px;
+    background-color: #ffffff;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    color: #1d2e5b;
+    opacity: 0.15;
+}
+
+.card-transport-item.is-active {
+    opacity: 1;
+}
+
+.card-transport-airplane {
+    background-image: url('../../../public/img/transport/icon_plane.svg');
+}
+
+.card-transport-car {
+    background-image: url('../../../public/img/transport/icon_bus.svg');
+}
+
+.card-transport-bike {
+    background-image: url('../../../public/img/transport/icon_bicycle.svg');
+}
+
+.card-transport-footstep {
+    background-image: url('../../../public/img/transport/icon_run.svg');
+}
+
+
+.card-user-level {
+    position: relative;
+    grid-area: level;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid #4d99d6;
+    box-sizing: border-box;    
+}
+
+.card-user-level::after {
+    position: absolute;
+    top: calc(50% + 2px);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    width: 34px;
+    height: 1px;
+    background-color: #000000;
+    opacity: 0.1;
+    content: "";
+}
+
+.card-level-number {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 24px;
+    color: #1d2e5b;
+    margin-bottom: 2px;
+}
+
+.card-level-label {
+    font-size: 14px;
+    line-height: 14px;
+    color: #000000;
+    opacity: 0.4;
+}
