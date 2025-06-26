@@ -1,5 +1,5 @@
 import CompanionsDurationInput from './companions-duration-input';
-import styles from './number-inputs.module.scss';
+import styles from './companions-duration-input.module.scss';
 
 function CompanionsDurationInputs() {
   return (

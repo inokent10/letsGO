@@ -1,4 +1,4 @@
-import styles from './number-inputs.module.scss';
+import styles from './companions-duration-input.module.scss';
 
 function CompanionsDurationInput() {
   return (
