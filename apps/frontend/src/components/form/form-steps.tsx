@@ -4,22 +4,38 @@ import { useRouter } from 'next/navigation';
 
 import { AppRoute } from '@/src/const';
 
-import Points from './points/points';
 import { POINTS } from './form-const';
 
 import ButtonsForm from '../buttons/buttons-form';
-import Calendar from '../calendar/calendar';
-import CompanionsDurationInputs from './inputs/inputs-step1/companions-duration-inputs';
 
 import styles from './form-steps.module.scss';
+import FormStepsOne from './step1/form-steps-one';
+import { ItineraryPlan } from '@/src/types/itineraryPlan.interface';
+
+const initialFormData: ItineraryPlan = {
+  tripmatesCount: 0,
+  tripDuration: 0,
+  isChildrenAccepted: false,
+  startDate: '',
+  finishDate: '',
+  itinerary: [],
+};
 
 function FormSteps() {
   const router = useRouter();
+  const [formData, setFormData] = useState<ItineraryPlan>(initialFormData);
   const [currentPoint, setCurrentPoint] = useState(POINTS[0]);
 
   const currentIndex = POINTS.indexOf(currentPoint);
   const isFirstStep = currentIndex === 0;
   const isLastStep = currentIndex === POINTS.length - 1;
+
+  const updateFormData = (data: Partial<ItineraryPlan>) => {
+    setFormData(prev => ({
+      ...prev,
+      ...data,
+    }));
+  };
 
   const onNextStep = () => {
     const nextIndex = (currentIndex + 1);
@@ -34,25 +50,19 @@ function FormSteps() {
   const onSubmit = () => {
     router.push(AppRoute.CatalogPage);
   };
-
+  
   return (
     <div className={styles.formLayout}>
       <div className={styles.formWrapper}>
-        <div className={styles.titleWrapper}>
-          <div className={styles.titleBox}>
-            <h1 className={styles.stepTitle}>Шаг 1. Даты пребывания</h1>
-            <p className={styles.stepDescription}>
-              Укажите предпочтительное количество попутчиков, которых<br/>
-              вы хотели бы позвать в поездку, и ее предполагаемую длительность.
-            </p>
-          </div>
-
-          <Points activePoint={currentPoint} />
-        </div>
-
-        <CompanionsDurationInputs />
-          
-        <Calendar />
+        
+        {
+          isFirstStep &&
+          <FormStepsOne
+            updateFormData={updateFormData}
+            formData={formData}
+            currentPoint={currentPoint} 
+          />
+        }
 
         <ButtonsForm 
           handlerNextStep={onNextStep} 
