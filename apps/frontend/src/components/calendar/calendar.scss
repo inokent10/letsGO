@@ -155,6 +155,9 @@
 
     &.in-range {
       background: #1D2E5B;
+      .day-number {
+        color: #FFFFFF;
+      }
     }
 
     &.range-start {
