@@ -6,6 +6,7 @@ import '@/src/styles/global.scss';
 import Footer from '@/src/components/footer/footer';
 import { usePathname } from 'next/navigation';
 import { AppRoute, HEADER_TITLES } from '@/src/const';
+import StoreProvider from '../storeProvider';
 
 function RootLayout({ children }: {
   children: React.ReactNode
@@ -25,11 +26,11 @@ function RootLayout({ children }: {
         <header>
           <Header title={dynamicHeaderTitle} />
         </header>
-
-        <main>
-          {children}
-        </main>
-        
+        <StoreProvider>
+          <main>
+            {children}
+          </main>
+        </StoreProvider>
         <footer>
           <Footer />
         </footer>
