@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { AppRoute } from '@/src/const';
@@ -11,6 +11,9 @@ import ButtonsForm from '../buttons/buttons-form';
 import styles from './form-steps.module.scss';
 import FormStepsOne from './step1/form-steps-one';
 import { ItineraryPlan } from '@/src/types/itineraryPlan.interface';
+import { useAppSelector, useAppStore } from '@/src/store/hooks';
+import { getCountries } from '@/src/store/tripmates-process/selectors';
+import { uploadCountries } from '@/src/store/tripmates-process/thunk-actions';
 
 const initialFormData: ItineraryPlan = {
   tripmatesCount: 0,
@@ -29,6 +32,14 @@ function FormSteps() {
   const currentIndex = POINTS.indexOf(currentPoint);
   const isFirstStep = currentIndex === 0;
   const isLastStep = currentIndex === POINTS.length - 1;
+
+  const store = useAppStore();
+  const countries = useAppSelector(getCountries);
+  useEffect(() => {
+    if (!countries) {
+      store.dispatch(uploadCountries());
+    }
+  });
 
   const updateFormData = (data: Partial<ItineraryPlan>) => {
     setFormData(prev => ({
