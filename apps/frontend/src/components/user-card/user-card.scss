@@ -15,7 +15,13 @@
     background-color: #ffffff;
     border-radius: 25px;
     overflow: hidden;
+
+    &:hover {
+        transform: scale(1.01);
+        box-shadow: 0 4px 9px 0 rgba($color: #000000, $alpha: 0.16)
+    }
 }
+
 
 .visually-hidden {
   position: absolute;
@@ -36,23 +42,58 @@
 
 .card-image {
     grid-area: image;
+    width: 100%;
+    height: 100%;
     align-self: stretch;
-    object-fit: contain;      
+    object-fit: cover;      
 }
 
 .card-name {
+    position: relative;
     grid-area: name;
     align-self: start;
-    min-height: 30px;    
+    min-height: 30px;
+    text-decoration: none;
+    
+    &:hover, 
+    &:focus {
+        opacity: 0.6;
+    }
+
+    &:active {
+        opacity: 0.3;
+    }
+}
+
+.card-name::before {
+    position: absolute;
+    top: 50%;
+    left: calc(0px - 18px - 8px);
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #f97676;
+    content: "";    
+}
+
+.card-name.is-online::before {
+    background-color: #81e31e;
 }
 
 .card-tags {
     grid-area: tags;
-    max-width: 226px;
+    max-width: 230px;
     align-self: start;
-    padding: 0;
-    margin: 0;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    flex-wrap: wrap;
     margin-bottom: 25px;    
+}
+
+.card-tags > li:not(:last-child) {
+    margin-right: 5px;
 }
 
 .card-countries {
@@ -96,7 +137,8 @@
     padding: 0;
     margin: 0;
     margin-right: 4px; 
-    border: none;    
+    border: none;
+    cursor: pointer;    
 }
 
 .card-invite-btn {
@@ -105,19 +147,62 @@
     font: inherit;
     text-transform: uppercase;
     border-radius: 25px;
+    color: #161c35;
+
+    &:hover {
+        background-color: #4d99d6;
+    }
+
+    &:focus {
+        background-color: #4d99d6;
+    }
+
+    &:active {
+       background-color: #4d99d6;
+       color: rgba($color: #161c35, $alpha: 0.3) 
+    }
 }
 
 .card-like-btn {
     width: 50px;
     background-color: #e2e5f2;
-    border-radius: 50%;    
+    border-radius: 50%;  
+}
+
+.card-like-btn.is-liked {
+    background-color: #f9eaea;
+
+    &:hover,
+    &:focus,
+    &:active {
+        background-color: #f9d8d8; 
+    }
 }
 
 .like-btn-icon {
     margin: 0;
     padding: 0;
-    fill: #192144;
+    fill: transparent;
+    stroke: #192144;
+    opacity: 0.3;
+}
+
+.card-like-btn.is-liked .like-btn-icon {
+    fill: #f02323;
+    stroke: #f02323;
+    opacity: 1; 
+}
+
+.card-like-btn:not(.is-liked):hover .like-btn-icon {
     opacity: 0.5;
+}
+
+.card-like-btn:active .like-btn-icon {
+    opacity: 0.1;
+}
+
+.card-like-btn.is-liked:active .like-btn-icon {
+    opacity: 0.3;
 }
 
 .card-transport {
@@ -169,9 +254,27 @@
     align-items: center;
     width: 60px;
     height: 60px;
-    border-radius: 50%;
-    border: 3px solid #4d99d6;
     box-sizing: border-box;    
+}
+
+.card-level-bar {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 9;
+}
+
+.circle {
+    stroke: #ffffff;
+    stroke-width: 3px;
+    stroke-linecap: round;
+}
+
+.bar {
+    stroke: #4d99d6;
+    stroke-width: 3px;
+    transform: rotate(-96deg);
+    transform-origin: 50% 50%;
 }
 
 .card-user-level::after {

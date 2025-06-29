@@ -11,4 +11,7 @@ export interface User {
   level: number;
   tags: string[];
   likes: number;
+  isLiked: boolean;
+  isOnline: boolean;
+  avatar: string;
 }

@@ -43,4 +43,16 @@ export class UserRdo {
     @ApiProperty({description: 'Количество лайков профиля',})
     @Expose()
     likes: number;
+
+    @ApiProperty({description: 'Был ли поставлен лайк данному юзеру',})
+    @Expose()
+    isLiked: boolean;
+
+    @ApiProperty({description: 'Статус онлайн или офлайн юзера',})
+    @Expose()
+    isOnline: boolean;
+
+    @ApiProperty({description: 'Ссылка с расположением аватара юзера',})
+    @Expose()
+    avatar: string;
 }

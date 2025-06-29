@@ -64,7 +64,7 @@ export class AppRepository {
             const data = readFileSync('libs/data-generation/src/countries.json', {encoding: 'utf8'});
             const countriesJson = <Record<string, Country>>JSON.parse(data);
             this.countries = [...Object.values(countriesJson)]   
-            return this.countries; 
+            return this.countries.slice(0, -2); 
         } catch (err) {
             throw new InternalServerErrorException(err);
         } 
