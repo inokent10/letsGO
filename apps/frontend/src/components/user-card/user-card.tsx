@@ -2,16 +2,16 @@
 import { flagIcons, Vehicle } from '@/src/const';
 import './user-card.scss';
 import type { JSX } from 'react';
-import { getRandomElement } from '@/src/utils/common';
+import { ajustUserLevel, getRandomElement } from '@/src/utils/common';
 
 function UserCard(): JSX.Element {  
 
   return (
     <div className='user-card'>
       <img className='card-image' src='/img/demin-desktop 2.jpg' width={285} height={285} />
-      <span className='card-name is-offline font-large'>
+      <a className='card-name is-offline font-large' href='#'>
         Петя Демин
-      </span>
+      </a>
       <p className='card-tags'>
         #бургер #бар #футбол #концерт #крафт
       </p>
@@ -29,7 +29,7 @@ function UserCard(): JSX.Element {
         <button className='card-invite-btn card-btn' type='button'>Позвать!</button>
         <button className='card-like-btn card-btn' type='button'>
           <svg className='like-btn-icon' width='20' height='19' viewBox='0 0 20 19' xmlns='http://www.w3.org/2000/svg'>
-            <path fill-rule='evenodd' clip-rule='evenodd' d='M10 7.12436L11.1175 4.77557C11.395 4.19396 11.8762 3.35764 12.5575 2.68149C13.2275 2.01585 14.03 1.5629 15 1.5629C17.095 1.5629 18.75 3.30381 18.75 5.39658C18.75 6.9865 18.0575 8.10903 16.415 9.82106C15.9937 10.2596 15.5138 10.7335 14.9825 11.2561C13.5975 12.6215 11.875 14.3204 10 16.5917C8.125 14.3204 6.4025 12.6215 5.0175 11.2561C4.48625 10.7335 4.005 10.2583 3.585 9.82106C1.9425 8.10903 1.25 6.9865 1.25 5.39658C1.25 3.30381 2.905 1.5629 5 1.5629C5.97 1.5629 6.7725 2.01585 7.4425 2.68149C8.12375 3.35764 8.605 4.19396 8.8825 4.77557L10 7.12436ZM10.49 18.0109C10.4298 18.0858 10.3548 18.146 10.2701 18.1873C10.1855 18.2286 10.0933 18.25 10 18.25C9.90668 18.25 9.81449 18.2286 9.72986 18.1873C9.64523 18.146 9.57019 18.0858 9.51 18.0109C7.50875 15.5138 5.6975 13.7283 4.20625 12.2591C1.625 9.7134 0 8.11297 0 5.39658C0 2.55414 2.2375 0.25 5 0.25C7 0.25 8.39875 1.62855 9.255 2.88631C9.58 3.36552 9.8275 3.82635 10 4.18871C10.2162 3.73519 10.4653 3.29978 10.745 2.88631C11.6012 1.62723 13 0.25 15 0.25C17.7625 0.25 20 2.55414 20 5.39658C20 8.11297 18.375 9.7134 15.7938 12.2591C14.3025 13.7296 12.4913 15.5151 10.49 18.0096V18.0109Z'/>
+            <path d="M5 0.25C7.7625 0.25 10 2.44375 10 5.15C10 2.44375 12.2375 0.25 15 0.25C17.7625 0.25 20 2.44375 20 5.15C20 9.22875 15.9575 10.6675 10.49 17.16C10.4298 17.2313 10.3548 17.2886 10.2701 17.3279C10.1855 17.3672 10.0933 17.3876 10 17.3876C9.90668 17.3876 9.81449 17.3672 9.72986 17.3279C9.64523 17.2886 9.57019 17.2313 9.51 17.16C4.0425 10.6675 0 9.22875 0 5.15C0 2.44375 2.2375 0.25 5 0.25Z" />
           </svg>
           <span className='visually-hidden'>Поставить лайк</span>
         </button>
@@ -50,6 +50,26 @@ function UserCard(): JSX.Element {
         </li>
       </ul>
       <div className='card-user-level'>
+        <svg className="card-level-bar" width="60" height="60" viewBox='0 0 60 60' xmlns="http://www.w3.org/2000/svg">
+          <circle 
+            className='circle'
+            r="28.5" 
+            cx="30" 
+            cy="30" 
+            fill="transparent"
+            strokeDasharray={Math.PI*2*28.5}
+            strokeDashoffset={0}            
+          />
+          <circle 
+            className='circle bar'
+            r="27" 
+            cx="30" 
+            cy="30" 
+            fill="transparent"
+            strokeDasharray={Math.PI*2*28.5}
+            strokeDashoffset={((100-ajustUserLevel(80))/100)*Math.PI*2*28.5}          
+          />
+        </svg>
         <span className='card-level-number'>80</span>
         <span className='card-level-label'>level</span>
       </div>      

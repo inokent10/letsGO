@@ -18,7 +18,7 @@ export const userCardGenerator = (cardsCount: number, countries: Country[]) => {
 const genearteUser = (countries: Country[]): User => {
   return {
     id: faker.string.uuid(),
-    name: faker.person.fullName(),
+    name: `${faker.person.firstName()} ${faker.person.lastName()}`,
     countries: faker.helpers.arrayElements(countries, {min: 1, max: 5}),
     hobby: faker.helpers.arrayElements(Object.values(Hobby), {min: 0, max: 3}),
     transport: faker.helpers.arrayElements(Object.values(Vehicle), {min: 1, max: 4}),
@@ -27,5 +27,8 @@ const genearteUser = (countries: Country[]): User => {
     level: getRandomInteger(1, 100),
     tags: faker.lorem.words({min: 0, max: 3}).split(' '),
     likes: getRandomInteger(1, 9999),
+    isLiked: faker.datatype.boolean(),
+    isOnline: faker.datatype.boolean(),
+    avatar: faker.image.avatar(),
   };
 };
