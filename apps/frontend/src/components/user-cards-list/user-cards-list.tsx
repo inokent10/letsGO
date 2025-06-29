@@ -26,7 +26,7 @@ function UserCardsList(): JSX.Element {
         <ul className='user-cards-list'>
           {
             users.map((user) => (
-              <li key={user.id}><UserCard /></li>
+              <li key={user.id}><UserCard user={user} /></li>
             ))
           }
         </ul>
