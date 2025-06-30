@@ -8,6 +8,7 @@ import type { JSX } from 'react';
 function CatalogPage(): JSX.Element {
   return (
     <div className='catalog-container'>
+      <h1 className='visually-hidden'>Каталог попутчиков</h1>
       <FilterByCountry />
       <UserCardsList />
       <FilterByTripmates />

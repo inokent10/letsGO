@@ -1,14 +1,13 @@
 .user-cards {
-    flex-grow: 1;
+    max-width: 951px;
 }
 
 .user-cards-list {    
     display: flex;
     flex-direction: column;
-    width: 100%;
     margin: 0;
     padding: 0;
-    margin-right: 5.3rem;
+    
     margin-bottom: 50px;
     list-style-type: none;
 }
