@@ -1,0 +1,53 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 800px;
+    padding: 20px 0px;
+  }
+
+  .dropdown {
+    position: relative;
+    width: 100%;
+  }
+  
+  .dropdownContent {
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 2px solid #e5e7eb;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    margin-top: 4px;
+    max-width: 678px;
+    max-height: 400px;
+    overflow: auto;
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    background: #1e293b;
+    color: white;
+  }
+  
+  .title {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin: 0;
+  }
+
+  .countryBox {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .countriesList {
+    max-height: 250px;
+    overflow-y: auto;
+    max-width: 250px;
+  }

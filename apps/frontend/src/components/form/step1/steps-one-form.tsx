@@ -4,13 +4,13 @@ import styles from '../form-steps.module.scss';
 import Points from '../points/points';
 import CompanionsDurationInputs from './inputs/companions-duration-inputs';
 
-interface FormStepsOneProps {
+interface StepsOneFormProps {
     currentPoint: string;
     formData: ItineraryPlan;
     updateFormData: (data: Partial<ItineraryPlan>) => void;
 }
 
-function FormStepsOne({ currentPoint, formData, updateFormData }: FormStepsOneProps) {
+function StepsOneForm({ currentPoint, formData, updateFormData }: StepsOneFormProps) {
   const getSelectedDate = (): Date | undefined => {
     if (formData.startDate) {
       const [year, month, day] = formData.startDate.split('-').map(Number);
@@ -102,4 +102,4 @@ function FormStepsOne({ currentPoint, formData, updateFormData }: FormStepsOnePr
   );
 }
 
-export default FormStepsOne;
+export default StepsOneForm;
