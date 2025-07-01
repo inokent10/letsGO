@@ -3,17 +3,17 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { AppRoute } from '@/src/const';
-
 import { POINTS } from './form-const';
+import styles from './form-steps.module.scss';
 
 import ButtonsForm from '../buttons/buttons-form';
+import StepsOneForm from './step1/steps-one-form';
 
-import styles from './form-steps.module.scss';
-import FormStepsOne from './step1/form-steps-one';
 import { ItineraryPlan } from '@/src/types/itineraryPlan.interface';
 import { useAppSelector, useAppStore } from '@/src/store/hooks';
 import { getCountries } from '@/src/store/tripmates-process/selectors';
 import { uploadCountries } from '@/src/store/tripmates-process/thunk-actions';
+import StepsTwoForm from './step2/steps-two-form';
 
 const initialFormData: ItineraryPlan = {
   tripmatesCount: 0,
@@ -26,17 +26,18 @@ const initialFormData: ItineraryPlan = {
 
 function FormSteps() {
   const router = useRouter();
+  const store = useAppStore();
+  
   const [formData, setFormData] = useState<ItineraryPlan>(initialFormData);
-  const [currentPoint, setCurrentPoint] = useState(POINTS[0]);
+  const [currentPoint, setCurrentPoint] = useState(POINTS[1]);
 
   const currentIndex = POINTS.indexOf(currentPoint);
   const isFirstStep = currentIndex === 0;
   const isLastStep = currentIndex === POINTS.length - 1;
 
-  const store = useAppStore();
   const countries = useAppSelector(getCountries);
   useEffect(() => {
-    if (!countries) {
+    if (!countries && currentIndex === 1) {
       store.dispatch(uploadCountries());
     }
   });
@@ -49,31 +50,55 @@ function FormSteps() {
   };
 
   const onNextStep = () => {
-    const nextIndex = (currentIndex + 1);
-    setCurrentPoint(POINTS[nextIndex]);
+    if (currentIndex < POINTS.length - 1) {
+      const nextIndex = currentIndex + 1;
+      setCurrentPoint(POINTS[nextIndex]);
+    }
   }; 
 
   const onPrevStep = () => {
-    const prevIndex = (currentIndex - 1 );
-    setCurrentPoint(POINTS[prevIndex]); 
+    if (currentIndex > 0) {
+      const prevIndex = currentIndex - 1;
+      setCurrentPoint(POINTS[prevIndex]); 
+    }
   };
   
   const onSubmit = () => {
     router.push(AppRoute.CatalogPage);
+  };
+
+  const renderCurrentStep = () => {
+    switch (currentIndex) {
+    case 0:
+      return (
+        <StepsOneForm
+          updateFormData={updateFormData}
+          formData={formData}
+          currentPoint={currentPoint} 
+        />
+      );
+    case 1:
+      return (
+        <StepsTwoForm  
+          updateFormData={updateFormData}
+          countries={countries} 
+          currentPoint={currentPoint}
+        />
+      );
+    // case 2:
+    //   return (
+    //     <StepsThreForm />
+    //   );
+    default:
+      return null;
+    }
   };
   
   return (
     <div className={styles.formLayout}>
       <div className={styles.formWrapper}>
         
-        {
-          isFirstStep &&
-          <FormStepsOne
-            updateFormData={updateFormData}
-            formData={formData}
-            currentPoint={currentPoint} 
-          />
-        }
+        {renderCurrentStep()}
 
         <ButtonsForm 
           handlerNextStep={onNextStep} 
