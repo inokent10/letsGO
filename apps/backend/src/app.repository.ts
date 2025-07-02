@@ -20,16 +20,16 @@ export class AppRepository {
 
     private filterUsers(query: AppQueryDto): User[] {
         return this.users.filter((user) => {
-            if (query.hobby && !user.hobby.some((item) => query.hobby?.includes(item))) {
+            if (query['hobby[]'] && !user.hobby.some((item) => query['hobby[]']?.includes(item))) {                
                 return false
             }
-            if (query.music && !user.music.some((item) => query.music?.includes(item))) {
+            if (query['music[]'] && !user.music.some((item) => query['music[]']?.includes(item))) {
                 return false
             }
             if (query.meal && !(user.meal === query.meal)) {
                 return false
             }
-            if (query.transport && !user.transport.some((item) => query.transport?.includes(item))) {
+            if (query['transport[]'] && !user.transport.some((item) => query['transport[]']?.includes(item))) {
                 return false
             }
             if (query.levelMin && !(user.level >= query.levelMin)) {

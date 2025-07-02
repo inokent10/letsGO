@@ -21,6 +21,7 @@ function UserCardsList(): JSX.Element {
 
   return (
     <section className='user-cards'>
+      <h2 className='visually-hidden'>Список карточек попутчиков</h2>
       {
         users &&
         <ul className='user-cards-list'>
