@@ -1,5 +1,6 @@
 .user-cards {
     max-width: 951px;
+    width: 100%;
 }
 
 .user-cards-list {    
@@ -14,4 +15,10 @@
 
 .user-cards-list > li:not(:last-child) {
     margin-bottom: 30px;
+}
+
+.empty-user-cards {
+    display: flex;
+    margin: auto;
+    text-align: center;
 }

@@ -32,7 +32,12 @@ function UserCardsList(): JSX.Element {
           }
         </ul>
       }
-    
+      {
+        !users || users.length === 0 
+        &&
+        <p className='empty-user-cards font-large'>Нет данных, удовлетворяющих запрашиваемым условиям</p>
+      }    
+      
     </section>
   );
 }

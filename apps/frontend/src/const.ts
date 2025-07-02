@@ -27,7 +27,7 @@ enum ApiRoute {
 }
 
 const ApiSettings = {
-  BASE_URL: 'http://localhost:5001',
+  BASE_URL: 'http://localhost:5000',
   API_TIMEOUT: 5000,
 } as const;
 

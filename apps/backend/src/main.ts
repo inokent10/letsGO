@@ -24,6 +24,6 @@ async function bootstrap() {
     skipMissingProperties: true,
     skipUndefinedProperties: true 
     }))
-  await app.listen(process.env.PORT ?? 5001);
+  await app.listen(process.env.PORT ?? 5000);
 }
 bootstrap();

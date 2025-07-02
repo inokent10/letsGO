@@ -11,14 +11,6 @@ import { getQuery } from '@/src/store/tripmates-process/selectors';
 import { uploadUserCards } from '@/src/store/tripmates-process/thunk-actions';
 import { Query } from '@/src/types/query.interface';
 
-interface FilterFormDataType {
-  hobby: string[],
-  music: string[],
-  transport: string[],
-  meal: string,
-  levelMin: number,
-  levelMax: number
-}
 
 function FilterByTripmates(): JSX.Element {
   const [level, setLevel] = useState({ levelMin: USERT_MIN_LEVEL, levelMax: USERT_MAX_LEVEL });
@@ -47,8 +39,6 @@ function FilterByTripmates(): JSX.Element {
       if (formData.getAll('meal')) {
         queryForm.meal = formData.get('meal') as string;
       }
-      queryForm.levelMax = 
-      
       dispatch(uploadUserCards({ ...query, ...queryForm }));
     }
     
