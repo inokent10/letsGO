@@ -1,7 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { Hobby, Meal, MusicStyle, USER_MAX_LEVEL, Vehicle } from "backendSettings/settings";
 import { Transform } from "class-transformer";
-import { IsIn, IsNumber, IsOptional, isString, IsString, Max } from "class-validator";
+import { IsIn, IsNumber, IsOptional, IsString, Max } from "class-validator";
 
 export class AppQueryDto {
   @ApiProperty({
@@ -32,16 +32,14 @@ export class AppQueryDto {
   @ApiProperty({description: 'Список или строка с указанием хобби',})
   @IsOptional()
   @IsString({each: true})
-  @Transform(({value}): string[] => (isString(value) ? [value,] : value))
   @IsIn(Object.values(Hobby), {each: true})
-  hobby?: string[];
+  'hobby[]'?: string[];
 
   @ApiProperty({description: 'Список или строка с указанием предпочитаемого стиля музыки',})
   @IsOptional()
   @IsString({each: true})
-  @Transform(({value}): string[] => (isString(value) ? [value,] : value))
   @IsIn(Object.values(MusicStyle), {each: true})
-  music?: string[];
+  'music[]'?: string[];
 
   @ApiProperty({description: 'Предпочитаемый тип питания',})
   @IsOptional()
@@ -52,9 +50,8 @@ export class AppQueryDto {
   @ApiProperty({description: 'Список или строка с указанием возможных способов передвижения',})
   @IsOptional()
   @IsString({each: true})
-  @Transform(({value}): string[] => (isString(value) ? [value,] : value))
   @IsIn(Object.values(Vehicle), {each: true})
-  transport?: string[];
+  'transport[]'?: string[];
 
   @ApiProperty({description: 'Минимальный уровень. Значение не больше 100',})
   @IsOptional()
