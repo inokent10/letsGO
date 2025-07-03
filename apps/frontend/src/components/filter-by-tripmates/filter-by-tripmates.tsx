@@ -8,8 +8,9 @@ import FilterInputsList from '../checkbox-list/filter-inputs-list';
 import CustomSlider from '../custom-slider/custom-slider';
 import { useAppDispatch, useAppSelector } from '@/src/store/hooks';
 import { getQuery } from '@/src/store/tripmates-process/selectors';
-import { uploadUserCards } from '@/src/store/tripmates-process/thunk-actions';
+import { uploadMoreUserCards } from '@/src/store/tripmates-process/thunk-actions';
 import { Query } from '@/src/types/query.interface';
+import { saveQuery } from '@/src/store/tripmates-process/tripmates-process';
 
 
 function FilterByTripmates(): JSX.Element {
@@ -39,7 +40,8 @@ function FilterByTripmates(): JSX.Element {
       if (formData.getAll('meal')) {
         queryForm.meal = formData.get('meal') as string;
       }
-      dispatch(uploadUserCards({ ...query, ...queryForm }));
+      dispatch(uploadMoreUserCards({ ...query, ...queryForm }));
+      dispatch(saveQuery({ ...query, ...queryForm }));
     }
     
   };
