@@ -53,6 +53,16 @@ export class AppQueryDto {
   @IsIn(Object.values(Vehicle), {each: true})
   'transport[]'?: string[];
 
+  @ApiProperty({description: 'Список с указанием выбранных стран',})
+  @IsOptional()
+  @IsString({each: true})
+  'country[]'?: string[];
+
+  @ApiProperty({description: 'Список с указанием выбранных континентов',})
+  @IsOptional()
+  @IsString({each: true})
+  'continent[]'?: string[];
+
   @ApiProperty({description: 'Минимальный уровень. Значение не больше 100',})
   @IsOptional()
   @IsNumber()
