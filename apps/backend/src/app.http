@@ -9,18 +9,18 @@ Content-Type: application/json
 
 {
     "tripmatesCount": "3",
-    "tripDuration": "2",
+    "tripDuration": "25",
     "isChildrenAccepted": "false",
-    "startDate": "2025-06-20",
-    "finishDate": "2025-06-22",    
-    "itinerary": [
+    "startDate": "2025-07-06",
+    "finishDate": "2025-07-07",    
+    "itinerary": [       
         {
-            "country": "string",
+            "country": "Германия",
             "description": "string",
-            "position": "1"
+            "position": "2"
         },
         {
-            "country": "string",
+            "country": "Узбекистан",
             "description": "string",
             "position": "2"
         }

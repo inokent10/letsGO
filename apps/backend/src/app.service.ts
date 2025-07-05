@@ -31,7 +31,7 @@ export class AppService {
       status = false;
       messages.push('Дата начала путешествия не должна быть позже даты окончания')
     }
-    if (dayjs(dto.finishDate).diff(dayjs(dto.startDate), 'day') !== dto.tripDuration) {
+    if (dayjs(dto.finishDate).diff(dayjs(dto.startDate), 'day') !== (dto.tripDuration - 1)) {
       status = false;
       messages.push('Указанная продолжительность путешествия не соответствует выбранным датам')
     }
