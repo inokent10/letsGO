@@ -1,6 +1,51 @@
 .country-filter {
     width: 100%;
-    padding: 57px 0 74px;
-    background-color: #e2e5f2;
-    margin-bottom: 150px;
+    padding: 0;
+    padding-top: 3.5625rem;
+    margin-bottom: 3rem;
+}
+
+.country-filter-form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: start;
+}
+
+.country-filter-title {
+    position: relative;
+    padding: 0;
+    padding-left: 4.125rem;
+    margin: 0;
+    margin-right: 5px;
+    font: inherit;
+    color: #192144;
+    font-weight: 700;
+    background-image: url('../../../public/img/country-filter.svg');
+    background-repeat: no-repeat;
+    background-position: top 50% left 1.3125rem;
+    margin-bottom: 4.625rem;
+}
+
+.country-filter-continents {
+    display: flex;
+    margin-bottom: 4.625rem;
+    border: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+}
+
+.filter-continent-label {
+    margin-right: 1.4375rem;
+    color: rgba($color: #192144, $alpha: 0.3);
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.filter-continent-label:last-child {
+    margin-right: 0;
+}
+
+.filter-continent-input:checked ~ * {
+    color: #192144;
 }

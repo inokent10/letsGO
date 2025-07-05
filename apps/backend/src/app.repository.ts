@@ -38,6 +38,12 @@ export class AppRepository {
             if (query.levelMax && !(user.level <= query.levelMax)) {
                 return false
             }
+            if (query['continent[]'] && !user.countries.some((item) => query['continent[]']?.includes(item.location))) {
+                return false
+            }
+            if (query['country[]'] && !user.countries.some((item) => query['country[]']?.includes(item.name))) {
+                return false
+            }
             return true
         })
     }
