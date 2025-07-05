@@ -1,0 +1,134 @@
+.catalog-pagination {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 949px;
+    width: 100%;
+}
+
+.pagination-more-button {
+    position: relative;
+    width: 12.625rem;
+    min-height: 26px;
+    padding: 0;
+    padding-left: 3.125rem;
+    margin: 0;
+    margin-bottom: 73px;
+    background-color: transparent;
+    border: none;
+    font: inherit;
+    text-transform: uppercase;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.pagination-more-button::after,
+.pagination-more-button::before {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 1.625rem;
+    height: 2px;
+    background-color: #1d2e5b;
+    content: ""
+}
+
+.pagination-more-button::after {
+    transform: translateY(-50%);
+}
+
+.pagination-more-button::before {
+    transform: translateY(-50%) rotate(90deg);
+}
+
+.pagination-more-button:hover::after,
+.pagination-more-button:hover::before {
+    opacity: 0.6;
+}
+
+.pagination-more-button:active::after,
+.pagination-more-button:active::before {
+    opacity: 0.3;
+}
+
+.pagination-pages {
+    display: flex;
+    justify-content: space-between;    
+    align-items: center;
+    width: calc(100% - 1.625rem - 2.563rem);
+    padding: 1.625rem;
+    padding-right: 2.563rem;
+    margin-bottom: 77px;
+    background-color: #ffffff;
+    border-radius: 1.25rem;
+}
+
+.pages-list {
+    display: flex;
+    margin-right: 1.5rem;
+    overflow-x: hidden;    
+}
+
+.page-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 3.125rem;
+    height: 3.125rem;
+    border-radius: 50%;
+    background-color: transparent;
+    font: inherit;
+    font-weight: 700;
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+        color: rgba($color: #1d2e5b, $alpha: 0.6);
+    }
+    
+
+    &:active {
+        color: rgba($color: #1d2e5b, $alpha: 0.3);
+    }
+
+    &.current-page {
+        background-color: #4d99d6;
+    }
+}
+
+.pagination-controls {
+    display: flex;
+}
+
+.pagination-previous-page,
+.pagination-next-page {
+    width: 0.8125rem;
+    height: 1.25rem;
+    background-color: transparent;
+    background-image: url('../../../public/img/page-arrow.svg');
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.6;
+    }
+    
+    &:active {
+        opacity: 0.3;
+    }
+
+    &:disabled {
+        opacity: 0.1;
+    }
+}
+
+.pagination-previous-page {
+    margin-right: 1.8125rem;
+}
+
+.pagination-next-page {
+    transform: rotate(180deg);
+}

@@ -18,11 +18,21 @@ const uploadCountries = createAsyncThunk<
   return data;
 });
 
-const uploadUserCards = createAsyncThunk<
+const uploadMoreUserCards = createAsyncThunk<
   UsersWithPagaintion,
   Query,
   { dispatch: Dispatch; state: RootState; extra: AxiosInstance }
->('uploadUserCards', async(query, { extra: api }) => {
+>('uploadMoreUserCards', async(query, { extra: api }) => {
+  const { data } = await api.get<UsersWithPagaintion>(ApiRoute.CATALOG, { params: { ...query } });
+
+  return data;
+});
+
+const uploadPageUserCards = createAsyncThunk<
+  UsersWithPagaintion,
+  Query,
+  { dispatch: Dispatch; state: RootState; extra: AxiosInstance }
+>('uploadPageUserCards', async(query, { extra: api }) => {
   const { data } = await api.get<UsersWithPagaintion>(ApiRoute.CATALOG, { params: { ...query } });
 
   return data;
@@ -40,6 +50,7 @@ const sendItineraryPlan = createAsyncThunk<
 
 export {
   uploadCountries,
-  uploadUserCards,
+  uploadMoreUserCards,
   sendItineraryPlan,
+  uploadPageUserCards,
 };

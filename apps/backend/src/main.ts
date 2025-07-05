@@ -18,7 +18,12 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, documentFactory);
 
   app.enableCors();
-  app.useGlobalPipes(new ValidationPipe({transform: true, skipMissingProperties: true}))
-  await app.listen(process.env.PORT ?? 5001);
+  app.useGlobalPipes(new ValidationPipe({
+    transform: true,
+    whitelist: true, 
+    skipMissingProperties: true,
+    skipUndefinedProperties: true 
+    }))
+  await app.listen(process.env.PORT ?? 5000);
 }
 bootstrap();
