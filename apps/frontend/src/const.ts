@@ -1,5 +1,7 @@
 const DEFAULT_CARDS_PER_PAGE = 4;
 const DEFAULT_PAGE_NUMBER = 1;
+const USERT_MIN_LEVEL = 0;
+const USERT_MAX_LEVEL = 100;
 
 enum AppRoute {
     FormPage = '/',
@@ -25,7 +27,7 @@ enum ApiRoute {
 }
 
 const ApiSettings = {
-  BASE_URL: 'http://localhost:5001',
+  BASE_URL: 'http://localhost:5000',
   API_TIMEOUT: 5000,
 } as const;
 
@@ -82,4 +84,6 @@ export {
   Hobby,
   MusicStyle,
   flagIcons,
+  USERT_MAX_LEVEL,
+  USERT_MIN_LEVEL,
 };

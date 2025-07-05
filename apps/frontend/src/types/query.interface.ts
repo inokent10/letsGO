@@ -7,6 +7,8 @@ export interface Query {
   music?: string[];
   meal?: string;
   transport?: string[];
+  country?: string[];
+  continent?: string[];
   levelMin?: number;
   levelMax?: number;
 }

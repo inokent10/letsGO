@@ -1,18 +1,24 @@
 .user-cards {
-    flex-grow: 1;
+    max-width: 951px;
+    width: 100%;
 }
 
 .user-cards-list {    
     display: flex;
     flex-direction: column;
-    width: 100%;
     margin: 0;
     padding: 0;
-    margin-right: 5.3rem;
+    
     margin-bottom: 50px;
     list-style-type: none;
 }
 
 .user-cards-list > li:not(:last-child) {
     margin-bottom: 30px;
+}
+
+.empty-user-cards {
+    display: flex;
+    margin: auto;
+    text-align: center;
 }

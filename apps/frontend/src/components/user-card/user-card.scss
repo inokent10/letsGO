@@ -1,6 +1,6 @@
 .user-card {
     display: grid;
-    grid-template-columns: 285px 1fr 120px 60px;
+    grid-template-columns: 285px 1fr 120px 103px;
     grid-template-rows: 26px repeat(3, auto) 22px;
     grid-template-areas: 'image . . .'
                          'image name countries countries'
@@ -9,9 +9,9 @@
                          'image . . .';    
     column-gap: 52px;
     row-gap: 20px;
-    max-width: 951px;
+    width: 56.75rem;
     min-height: 285px;
-    padding-right: 43px;
+    padding-right: 2.69rem;
     background-color: #ffffff;
     border-radius: 25px;
     overflow: hidden;
@@ -20,24 +20,6 @@
         transform: scale(1.01);
         box-shadow: 0 4px 9px 0 rgba($color: #000000, $alpha: 0.16)
     }
-}
-
-
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  border: 0;
-  clip: rect(0 0 0 0);
-  overflow: hidden;
-}
-
-.clear-list {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
 }
 
 .card-image {
@@ -100,7 +82,7 @@
     grid-area: countries;
     align-self: start;
     padding-top: 3px;
-    margin-bottom: 25px;     
+    margin-bottom: 25px;
 }
 
 .card-country-item {

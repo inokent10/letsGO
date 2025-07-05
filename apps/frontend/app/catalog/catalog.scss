@@ -1,8 +1,10 @@
 .catalog-container {
     display: flex;
+    justify-content: space-between;
     flex-wrap: wrap;
     box-sizing: border-box;
     max-width: 1440px;
+    width: 100%;
     margin: 0 auto;
     background-color: #edeff6;
     padding: 0 60px;
@@ -11,9 +13,39 @@
     line-height: 20px;
 }
 
-.font-large {
+.font-large {    
     font-size: 30px;
     line-height: 30px;
     font-weight: 700;
     color: #1d2e5b;
+}
+
+.clear-list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.user-cards {
+    max-width: 951px;
+}
+
+.user-cards-list {    
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    
+    margin-bottom: 50px;
+    list-style-type: none;
+}
+
+.user-cards-list > li:not(:last-child) {
+    margin-bottom: 30px;
+}
+
+.empty-user-cards {
+    display: flex;
+    margin: auto;
+    text-align: center;
 }

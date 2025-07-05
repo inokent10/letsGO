@@ -1,3 +1,4 @@
+import { Country } from '../types/country.interface';
 
 const getRandomInteger = (a: number, b: number) => {
   const lower = Math.ceil(Math.min(a, b));
@@ -26,9 +27,21 @@ const calculateDaysCount = (startDate: string, finishDate: string): number => {
   return 0;
 };
 
+const getCountryDictionary = (countries: Country[], continents: string[]) => {
+  continents = continents.map((continent) => continent === 'Острова' ? 'Океания' : continent);
+  return Array.from({ length: 32 }, (_, index) => String.fromCharCode(1072 + index)).reduce((result: ([string, Country[]])[], letter: string) => {
+    const filteredCountries = countries.filter((country) => {
+      return (country.name.toLowerCase().startsWith(letter)) && (continents.includes(country.location));
+    });
+    result.push([letter, filteredCountries]);
+    return result;
+  }, []);
+};
+
 export {
   getRandomInteger,
   getRandomElement,
   ajustUserLevel,
   calculateDaysCount,
+  getCountryDictionary,
 };

@@ -1,0 +1,53 @@
+.filter-countries-list {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(max-content, 1fr));
+    grid-template-rows: auto;
+    column-gap: 2.625rem;
+    row-gap: 2.8125rem;
+    width: 100%;
+    padding: 4.625rem 2.25rem 0;   
+    margin-bottom: 3.125rem;
+}
+
+.filter-country-letter-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-country-letter-title {
+    margin-bottom: 1.875rem;
+    color: #192144;
+    font-size: 60px;
+    line-height: 60px;
+    font-weight: 700;    
+    text-transform: uppercase;
+}
+
+.country-letter-list-item {
+    color: #444444;
+    line-height: 30px;
+}
+
+.filter-country-label {
+    cursor: pointer;
+}
+
+.filter-country-input:checked ~ * {
+    color: red;     
+}
+
+.filter-country-input:hover ~ * {
+    color: #1d2e5b;      
+}
+
+.filter-country-input:active ~ * {
+   color: rgba($color: #1d2e5b, $alpha: 0.3)     
+}
+
+.filter-country-input:checked:hover ~ * {
+    color: rgba($color: red, $alpha: 0.6);     
+}
+
+.filter-country-input:checked:active ~ * {
+    color: rgba($color: red, $alpha: 0.3);     
+}

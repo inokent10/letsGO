@@ -20,22 +20,29 @@ export class AppRepository {
 
     private filterUsers(query: AppQueryDto): User[] {
         return this.users.filter((user) => {
-            if (query.hobby && !user.hobby.some((item) => query.hobby?.includes(item))) {
+            if (query['hobby[]'] && !user.hobby.some((item) => query['hobby[]']?.includes(item))) {                
                 return false
             }
-            if (query.music && !user.music.some((item) => query.music?.includes(item))) {
+            if (query['music[]'] && !user.music.some((item) => query['music[]']?.includes(item))) {
                 return false
             }
             if (query.meal && !(user.meal === query.meal)) {
                 return false
             }
-            if (query.transport && !user.transport.some((item) => query.transport?.includes(item))) {
+            if (query['transport[]'] && !user.transport.some((item) => query['transport[]']?.includes(item))) {
                 return false
             }
             if (query.levelMin && !(user.level >= query.levelMin)) {
                 return false
             }
             if (query.levelMax && !(user.level <= query.levelMax)) {
+                return false
+            }
+            query['continent[]'] = query['continent[]']?.map((continent) => (continent === 'Острова' ? 'Океания' : continent)) 
+            if (query['continent[]'] && !user.countries.some((item) => query['continent[]']?.includes(item.location))) {
+                return false
+            }
+            if (query['country[]'] && !query['country[]'].every((item) => user.countries.map((country) => country.name).includes(item))) {
                 return false
             }
             return true
@@ -64,20 +71,16 @@ export class AppRepository {
             const data = readFileSync('libs/data-generation/src/countries.json', {encoding: 'utf8'});
             const countriesJson = <Record<string, Country>>JSON.parse(data);
             this.countries = [...Object.values(countriesJson)]   
-            return this.countries.slice(0, -2); 
+            return this.countries.slice(0, -2).filter((country) => (country.name.length < 20 && country.location !== 'Африка')); 
         } catch (err) {
             throw new InternalServerErrorException(err);
         } 
     }
 
-    public saveItinerary(_dto: ItineraryDto): UsersWithPagaintion {
-        return {
-            entities: this.users.slice(0, DEFAULT_CARDS_PER_PAGE),
-            totalPages: Math.ceil(this.users.length / DEFAULT_CARDS_PER_PAGE),
-            currentPage: DEFAULT_PAGE_NUMBER,
-            totalItems: this.users.length,
-            itemsPerPage: DEFAULT_CARDS_PER_PAGE,
-        }
+    public saveItinerary(dto: ItineraryDto): UsersWithPagaintion {
+        const countries = dto.itinerary.map((breakpoint) => breakpoint.country)
+        const slicedFilteredUSers = this.getUsers({"country[]": countries});
+        return slicedFilteredUSers;
     }
 
 }

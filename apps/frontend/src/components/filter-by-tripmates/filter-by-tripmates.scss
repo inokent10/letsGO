@@ -1,0 +1,128 @@
+.tripmates-filter-container {
+    align-self: flex-start;
+    display: flex;
+    flex-direction: column;
+    width: 13.06rem;
+    padding: 2.875rem;
+    background-color: #cce5fa;
+    border-radius: 20px;
+}
+
+.tripmates-filter-title {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 34px;
+}
+
+.filter-level-inputs {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 46px;
+    margin-bottom: 31px;
+}
+
+.filter-level-inputs::before {
+    width: 20px;
+    height: 1px;
+    background-color: #CBCED9;
+    z-index: 11;    
+}
+
+.filter-level-inputs::after {
+    width: 5px;
+    height: 13.42px;
+    background-color: #ffffff;
+    z-index: 10;    
+}
+
+.filter-level-inputs::after,
+.filter-level-inputs::before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    content: "";
+}
+
+
+
+.filter-level-input::-webkit-outer-spin-button,
+.filter-level-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.filter-level-label {
+    padding: 0;
+    flex-grow: 1;
+}
+
+.filter-level-input {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #cbced9;
+    outline: none;
+    text-align: center;
+    font: inherit;
+    color: inherit;
+    font-weight: 500;
+
+    &:hover {
+        border-color: #959bb2;
+    }
+
+    &:active,
+    &.is-typing  {
+        border-color: #161c35;
+    }
+}
+
+.filter-min-level {
+    border-radius: 4px 0 0 4px;
+    border-right-width: 0.5;
+}
+
+.filter-max-level {
+    border-radius: 0 4px 4px 0;
+    border-left-width: 0.5;
+}
+
+.filter-dropdown .MuiSlider-thumb:hover {
+    width: 19px;
+    height: 19px;
+    box-shadow: none;
+}
+
+.filter-dropdown .MuiBox-root {
+    margin: 0 auto;
+}
+
+.filter-dropdown .MuiSlider-thumb:active {
+    width: 19px;
+    height: 19px;
+    box-shadow: 0 3px 6px 0 rgba($color: #000000 , $alpha: 0.24);
+}
+
+.tripmates-filter-submit-btn {
+    width: 100%;
+    min-height: 49px;    
+    margin: 0;
+    background-color: #ffffff;
+    border:  none;
+    font: inherit;
+    font-weight: 700;
+    color: #161c35;
+    text-transform: uppercase;
+    border-radius: 25px;
+
+    &:hover {
+        box-shadow: 0 3px 6px 0 rgba($color: #000000 , $alpha: 0.14);
+    }
+
+    &:active {
+        background-color: #4d99d6;
+        color:rgba($color: #161c35 , $alpha: 0.3)
+    }
+}
