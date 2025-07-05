@@ -12,7 +12,7 @@ import StepsOneForm from './step1/steps-one-form';
 import { ItineraryPlan } from '@/src/types/itineraryPlan.interface';
 import { useAppSelector, useAppStore } from '@/src/store/hooks';
 import { getCountries } from '@/src/store/tripmates-process/selectors';
-import { uploadCountries } from '@/src/store/tripmates-process/thunk-actions';
+import { sendItineraryPlan, uploadCountries } from '@/src/store/tripmates-process/thunk-actions';
 import StepsTwoForm from './step2/steps-two-form';
 import StepsThreForm from './steps3/steps-thre-form';
 
@@ -28,6 +28,8 @@ const initialFormData: ItineraryPlan = {
 function FormSteps() {
   const router = useRouter();
   const store = useAppStore();
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
   
   const [formData, setFormData] = useState<ItineraryPlan>(initialFormData);
   const [currentPoint, setCurrentPoint] = useState(POINTS[0]);
@@ -64,8 +66,22 @@ function FormSteps() {
     }
   };
   
-  const onSubmit = () => {
-    router.push(AppRoute.CatalogPage);
+  const onSubmit = async () => {
+    try {
+      setIsSubmitting(true);
+      
+      const result = await store.dispatch(sendItineraryPlan(formData));
+      
+      if (sendItineraryPlan.fulfilled.match(result)) {
+        router.push(AppRoute.CatalogPage);
+      } else {
+        console.error('Ошибка при отправке данных маршрута:', result.error);
+      }
+    } catch (error) {
+      console.error('Неожиданная ошибка при отправке формы:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const renderCurrentStep = () => {
@@ -113,6 +129,7 @@ function FormSteps() {
           firstStep={isFirstStep}
           lastStep={isLastStep}
           formData={formData}
+          isSubmitting={isSubmitting}
         />
 
       </div>

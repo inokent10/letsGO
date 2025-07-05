@@ -46,3 +46,11 @@
 .disabledButton {
     opacity: 0.3;
 }
+
+.errorSpan {
+    flex-direction: column;
+    align-items: start;
+    span {
+        color: red;
+    }
+}

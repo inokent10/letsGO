@@ -1,5 +1,6 @@
 import { ItineraryPlan } from '@/src/types/itineraryPlan.interface';
 import styles from './buttons-form.module.scss';
+import { calculateDaysCount } from '@/src/utils/common';
 
 interface ButtonsProps {
     handler?: () => void;
@@ -12,7 +13,8 @@ interface FormButtons {
     handlerSubmit: () => void;
     firstStep: boolean;
     lastStep: boolean;
-    formData: ItineraryPlan
+    isSubmitting: boolean;
+    formData: ItineraryPlan;
 }
 
 function NextButton({ handler, flag }: ButtonsProps) {
@@ -40,11 +42,12 @@ function PrevButton({ handler }: ButtonsProps) {
   );
 };
 
-function SubmitButton({ handler }: ButtonsProps) {
+function SubmitButton({ handler, flag }: ButtonsProps) {
   return (
     <button 
       className={styles.nextButton}
       onClick={handler}
+      disabled={flag}
     >
          Отправить
       <img src='/Polygon_next.svg' alt='arrow' />
@@ -59,13 +62,22 @@ function ButtonsForm({
   firstStep,
   lastStep,
   formData,
+  isSubmitting,
 }: FormButtons) {
   const { startDate, finishDate, tripDuration, tripmatesCount, itinerary } = formData;
 
-  const ferstStepValid = startDate === '' || finishDate === '' || tripDuration === 0 || tripmatesCount === 0;
+  const invalidTripDuration = calculateDaysCount(formData.startDate, formData.finishDate) !== formData.tripDuration;
+  const ferstStepValid = startDate === '' || 
+  finishDate === '' || 
+  tripDuration === 0 || 
+  tripmatesCount === 0 || 
+  invalidTripDuration;
   
   return (
-    <div className={styles.buttonWrapper}>
+    <div className={`${styles.buttonWrapper} ${invalidTripDuration ? styles.errorSpan : ''}`}>
+      {invalidTripDuration && !formData.tripDuration && 
+        <span>дата и длительность должны совпадать</span>
+      }
       {firstStep && (
         <NextButton 
           handler={handlerNextStep} 
@@ -88,7 +100,9 @@ function ButtonsForm({
       {lastStep && (
         <>
           <SubmitButton 
-            handler={handlerSubmit} />
+            handler={handlerSubmit} 
+            flag={isSubmitting}
+          />
           <PrevButton 
             handler={handlerPrevStep} />
         </>

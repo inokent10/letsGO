@@ -44,10 +44,11 @@ function Calendar ({
   };
   
   const handleDateClick = (date: Date) => {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow.setHours(0, 0, 0, 0);
     
-    if (date < today) {
+    if (date < tomorrow) {
       return;
     }
     
@@ -142,13 +143,14 @@ function Calendar ({
     const nextMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1);
     const daysInPrevMonth = getDaysInMonth(prevMonth);
     
-    // Предыдущий месяц
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow.setHours(0, 0, 0, 0);
+    
     for (let i = firstDay - 1; i >= 0; i--) {
       const day = daysInPrevMonth - i;
       const dateToCheck = new Date(prevMonth.getFullYear(), prevMonth.getMonth(), day);
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      const isPast = dateToCheck < today;
+      const isBeforeTomorrow = dateToCheck < tomorrow;
       const inRange = isInRange(day, -1);
       const rangeStart = isRangeStart(day, -1);
       const rangeEnd = isRangeEnd(day, -1);
@@ -157,7 +159,7 @@ function Calendar ({
       days.push(
         <div 
           key={`prev-${day}`} 
-          className={`calendar-day prev-month ${isPast ? 'past-date' : ''} ${
+          className={`calendar-day prev-month ${isBeforeTomorrow ? 'past-date' : ''} ${
             inRange ? 'in-range' : ''
           } ${
             rangeStart ? 'range-start' : ''
@@ -166,7 +168,7 @@ function Calendar ({
           } ${
             event ? 'has-event' : ''
           }`}
-          onClick={() => !isPast && handleDateClick(dateToCheck)}
+          onClick={() => !isBeforeTomorrow && handleDateClick(dateToCheck)}
         >
           <span className='day-number'>{day}</span>
           {event && <span className='event-text'>{event}</span>}
@@ -174,13 +176,10 @@ function Calendar ({
       );
     }
     
-    // Текущий месяц
     for (let day = 1; day <= daysInMonth; day++) {
       const event = getEventForDate(day, 0);
       const dateToCheck = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      const isPast = dateToCheck < today;
+      const isBeforeTomorrow = dateToCheck < tomorrow;
       const inRange = isInRange(day, 0);
       const rangeStart = isRangeStart(day, 0);
       const rangeEnd = isRangeEnd(day, 0);
@@ -197,7 +196,7 @@ function Calendar ({
           } ${
             event ? 'has-event' : ''
           } ${
-            isPast ? 'past-date' : ''
+            isBeforeTomorrow ? 'past-date' : ''
           } ${
             inRange ? 'in-range' : ''
           } ${
@@ -205,7 +204,7 @@ function Calendar ({
           } ${
             rangeEnd ? 'range-end' : ''
           }`}
-          onClick={() => !isPast && handleDateClick(dateToCheck)}
+          onClick={() => !isBeforeTomorrow && handleDateClick(dateToCheck)}
         >
           <span className='day-number'>{day}</span>
           {event && <span className='event-text'>{event}</span>}
@@ -213,15 +212,12 @@ function Calendar ({
       );
     }
     
-    // Следующий месяц
     const totalCells = Math.ceil((firstDay + daysInMonth) / 7) * 7;
     const remainingCells = totalCells - (firstDay + daysInMonth);
     
     for (let day = 1; day <= remainingCells; day++) {
       const dateToCheck = new Date(nextMonth.getFullYear(), nextMonth.getMonth(), day);
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      const isPast = dateToCheck < today;
+      const isBeforeTomorrow = dateToCheck < tomorrow;
       const inRange = isInRange(day, 1);
       const rangeStart = isRangeStart(day, 1);
       const rangeEnd = isRangeEnd(day, 1);
@@ -230,7 +226,7 @@ function Calendar ({
       days.push(
         <div 
           key={`next-${day}`} 
-          className={`calendar-day next-month ${isPast ? 'past-date' : ''} ${
+          className={`calendar-day next-month ${isBeforeTomorrow ? 'past-date' : ''} ${
             inRange ? 'in-range' : ''
           } ${
             rangeStart ? 'range-start' : ''
@@ -239,7 +235,7 @@ function Calendar ({
           } ${
             event ? 'has-event' : ''
           }`}
-          onClick={() => !isPast && handleDateClick(dateToCheck)}
+          onClick={() => !isBeforeTomorrow && handleDateClick(dateToCheck)}
         >
           <span className='day-number'>{day}</span>
           {event && <span className='event-text'>{event}</span>}

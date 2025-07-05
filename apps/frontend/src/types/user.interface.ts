@@ -1,4 +1,4 @@
-import { Country } from "./country.interface";
+import { Country } from './country.interface';
 
 export interface User {
   id: string;
