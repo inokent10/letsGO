@@ -11,9 +11,13 @@ const getRandomElement = <T>(arr: T[]) => arr[getRandomInteger(0, arr.length - 1
 
 const ajustUserLevel = (level: number): number => (level > 90) ? level - 3 : level;
 
-const getCountryDictionary = (countries: Country[]) => {
+const getCountryDictionary = (countries: Country[], continents: string[]) => {
+  continents = continents.map((continent) => continent === 'Острова' ? 'Океания' : continent)
   return Array.from({ length: 32 }, (_, index) => String.fromCharCode(1072 + index)).reduce((result: ([string, Country[]])[], letter: string) => {
-    result.push([letter, countries.filter((country) => country.name.toLowerCase().startsWith(letter))]);
+    const filteredCountries = countries.filter((country) => {
+      return (country.name.toLowerCase().startsWith(letter)) && (continents.includes(country.location));
+    })
+    result.push([letter, filteredCountries]);
     return result;
   }, []);
 };

@@ -4,34 +4,78 @@ import './filter-by-country.scss';
 
 import { Continent } from '@/src/const';
 import { useAppDispatch, useAppSelector } from '@/src/store/hooks';
-import { getQuery } from '@/src/store/tripmates-process/selectors';
+import { getCountries, getQuery } from '@/src/store/tripmates-process/selectors';
 import { uploadPageUserCards } from '@/src/store/tripmates-process/thunk-actions';
 import { saveQuery } from '@/src/store/tripmates-process/tripmates-process';
-import { useState, type JSX } from 'react';
+import { useEffect, useState, type JSX } from 'react';
 import FilterCountryList from '../filter-country-list/filter-country-list';
+import { Country } from '@/src/types/country.interface';
 
 function FilterByCountry(): JSX.Element {
   const query = useAppSelector(getQuery);
+  const countries = useAppSelector(getCountries); 
   const [continents, setContinents] = useState<string[]>([]);
-  const [selectedCountries, setSelectedCountries] = useState<string[]>([]);
+  const [isRolledUp, setIsRolledUp] = useState<boolean>(true);
+  const [selectedCountries, setSelectedCountries] = useState<Country[]>([]);
   const dispatch = useAppDispatch();
 
-  const continentChangeHandler = (evt: React.FormEvent<HTMLInputElement>) => {
-    const newContinents: string[] = (continents.includes(evt.currentTarget.value)) ? continents.filter((item) => item !== evt.currentTarget.value) : [...continents, evt.currentTarget.value];
+  const countryChangeHandler = (evt: React.FormEvent<HTMLInputElement>) => {    
+    if (evt.currentTarget.checked && countries) {
+      const newCountry = countries?.filter((country) => country.name === evt.currentTarget.value);
+      setSelectedCountries([...selectedCountries, ...newCountry]);
+    } else {
+      setSelectedCountries(selectedCountries.filter((country) => country.name !== evt.currentTarget.value));
+    }
+  }
 
-    setContinents(newContinents);
+  const continentChangeHandler = (evt: React.FormEvent<HTMLInputElement>) => {  
+    if (isRolledUp && continents.includes(evt.currentTarget.value)) {
+      setIsRolledUp(false);
+      return;
+    }
+
+    let newContinents: string[];
+
+    if (continents.includes(evt.currentTarget.value)) {
+      newContinents = continents.filter((item) => item !== evt.currentTarget.value);
+      setSelectedCountries(selectedCountries.filter((country) => country.location !== evt.currentTarget.value));
+    } else {
+      newContinents = [...continents, evt.currentTarget.value];
+    }
     
-    dispatch(uploadPageUserCards({ 
-      ... query, 
-      continent: (newContinents.length === 0) ? undefined : newContinents, 
-      country: undefined, 
-    }));
-    dispatch(saveQuery({ 
-      ... query, 
-      continent: (newContinents.length === 0) ? undefined : newContinents, 
-      country: undefined, 
-    }));
+    setContinents(newContinents);
+    (newContinents.length > 0) ? setIsRolledUp(false) : setIsRolledUp(true);
   };
+
+  useEffect(() => {
+    if (selectedCountries.length === 0) {
+      dispatch(uploadPageUserCards({ 
+        ... query, 
+        continent: (continents.length === 0) ? undefined : continents, 
+        country: undefined, 
+      }));
+
+      dispatch(saveQuery({ 
+        ... query, 
+        continent: (continents.length === 0) ? undefined : continents, 
+        country: undefined, 
+      }));
+    } else {
+      const selecteCountriesNames = selectedCountries.map((country) => country.name)
+      dispatch(uploadPageUserCards({ 
+        ... query, 
+        continent: undefined, 
+        country: selecteCountriesNames, 
+      }));
+
+      dispatch(saveQuery({ 
+        ... query, 
+        continent: undefined, 
+        country: selecteCountriesNames, 
+      }));
+    }
+    
+  }, [continents, selectedCountries])
 
   return (
     <section className='country-filter'>
@@ -44,7 +88,9 @@ function FilterByCountry(): JSX.Element {
               type='checkbox' 
               name='continent' 
               value={Continent.EROUPE}
-              onChange={continentChangeHandler} />
+              onChange={continentChangeHandler}
+              checked={continents.includes(Continent.EROUPE)}
+            />
             <span>{Continent.EROUPE}</span>
           </label>
           <label className='filter-continent-label'>            
@@ -53,7 +99,9 @@ function FilterByCountry(): JSX.Element {
               type='checkbox' 
               name='continent' 
               value={Continent.ASIA}
-              onChange={continentChangeHandler} />
+              onChange={continentChangeHandler}
+              checked={continents.includes(Continent.ASIA)}
+            />
             <span>{Continent.ASIA}</span>
           </label>
           <label className='filter-continent-label'>
@@ -63,7 +111,9 @@ function FilterByCountry(): JSX.Element {
               type='checkbox' 
               name='continent' 
               value={Continent.AMERICA}
-              onChange={continentChangeHandler} />
+              onChange={continentChangeHandler} 
+              checked={continents.includes(Continent.AMERICA)}
+            />
             <span>{Continent.AMERICA}</span>
           </label>
           <label className='filter-continent-label'>            
@@ -72,12 +122,34 @@ function FilterByCountry(): JSX.Element {
               type='checkbox' 
               name='continent' 
               value={Continent.ISLANDS}
-              onChange={continentChangeHandler} />
+              onChange={continentChangeHandler} 
+              checked={continents.includes(Continent.ISLANDS)}
+            />
             <span>{Continent.ISLANDS}</span>
           </label>  
-        </fieldset>              
+        </fieldset>
+        {
+          !isRolledUp &&
+          continents.length > 0 &&
+          countries &&
+          <FilterCountryList
+            selectedCountries={selectedCountries.map((country) => country.name)}
+            countries={countries} 
+            continents={continents}
+            onCountryChange={countryChangeHandler}
+          />
+        }       
+
+        {
+          !isRolledUp &&
+          <button 
+          className='country-filter-rollup-button'
+          onClick={() => setIsRolledUp(true)}
+        >
+          <span className='rollup-button-text'>Свернуть</span>
+        </button>
+        }
         
-        <FilterCountryList />
         
       </form>
     </section>

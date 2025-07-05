@@ -49,8 +49,7 @@ function Pagination(): JSX.Element {
       <div className='pagination-pages'>
         <ul className='pages-list clear-list'>
           {
-            paginatedUsers?.totalPages 
-            &&
+            paginatedUsers &&
             Array.from({ length: paginatedUsers.totalPages }, (_val, index) => (index + 1)).map((page) => {
               if (page === paginatedUsers.currentPage) {
                 return (
@@ -68,7 +67,7 @@ function Pagination(): JSX.Element {
                 </li>
               );
             })
-          }
+          } 
         </ul>
         <div className='pagination-controls'>
           <button 
