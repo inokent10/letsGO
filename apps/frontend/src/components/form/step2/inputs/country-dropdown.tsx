@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import styles from './select-country-inputs.module.scss';
+import styles from './select-country-input.module.scss';
 import AlphabetFilter from './alphabet-filter';
 import { Country } from '@/src/types/country.interface';
 import OpenButton from '../buttons/open-button';
@@ -12,9 +12,12 @@ interface CountryDropdownProps {
   onSelect: (country: Country) => void;
   onRemove: () => void;
   placeholder?: string;
+  currentPoint: string;
   position: number;
   isOpen: boolean;
   onOpenClose: (arg: boolean) => void;
+  hasNextItem: boolean;
+  isLast: boolean;
 }
 
 function CountryDropdown({ 
@@ -23,9 +26,12 @@ function CountryDropdown({
   onSelect, 
   onRemove,
   placeholder = 'Выберите страну',
-  position,
   isOpen,
   onOpenClose,
+  currentPoint,
+  hasNextItem,
+  isLast,
+  position,
 }: CountryDropdownProps) {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedLetter, setSelectedLetter] = useState<string>('');
@@ -71,6 +77,10 @@ function CountryDropdown({
         handleRemoveCountry={handleRemoveCountry}
         placeholder={placeholder}
         selectedCountry={selectedCountry}
+        currentPoint={currentPoint}
+        hasNextItem={hasNextItem}
+        isLast={isLast}
+        position={position}
       />
 
       {isOpen && 

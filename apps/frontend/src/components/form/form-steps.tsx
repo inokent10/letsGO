@@ -12,8 +12,9 @@ import StepsOneForm from './step1/steps-one-form';
 import { ItineraryPlan } from '@/src/types/itineraryPlan.interface';
 import { useAppSelector, useAppStore } from '@/src/store/hooks';
 import { getCountries } from '@/src/store/tripmates-process/selectors';
-import { uploadCountries } from '@/src/store/tripmates-process/thunk-actions';
+import { sendItineraryPlan, uploadCountries } from '@/src/store/tripmates-process/thunk-actions';
 import StepsTwoForm from './step2/steps-two-form';
+import StepsThreForm from './steps3/steps-thre-form';
 
 const initialFormData: ItineraryPlan = {
   tripmatesCount: 0,
@@ -27,9 +28,11 @@ const initialFormData: ItineraryPlan = {
 function FormSteps() {
   const router = useRouter();
   const store = useAppStore();
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
   
   const [formData, setFormData] = useState<ItineraryPlan>(initialFormData);
-  const [currentPoint, setCurrentPoint] = useState(POINTS[1]);
+  const [currentPoint, setCurrentPoint] = useState(POINTS[0]);
 
   const currentIndex = POINTS.indexOf(currentPoint);
   const isFirstStep = currentIndex === 0;
@@ -41,7 +44,7 @@ function FormSteps() {
       store.dispatch(uploadCountries());
     }
   });
-
+  
   const updateFormData = (data: Partial<ItineraryPlan>) => {
     setFormData(prev => ({
       ...prev,
@@ -63,8 +66,22 @@ function FormSteps() {
     }
   };
   
-  const onSubmit = () => {
-    router.push(AppRoute.CatalogPage);
+  const onSubmit = async () => {
+    try {
+      setIsSubmitting(true);
+      
+      const result = await store.dispatch(sendItineraryPlan(formData));
+      
+      if (sendItineraryPlan.fulfilled.match(result)) {
+        router.push(AppRoute.CatalogPage);
+      } else {
+        console.error('Ошибка при отправке данных маршрута:', result.error);
+      }
+    } catch (error) {
+      console.error('Неожиданная ошибка при отправке формы:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const renderCurrentStep = () => {
@@ -83,12 +100,17 @@ function FormSteps() {
           updateFormData={updateFormData}
           countries={countries} 
           currentPoint={currentPoint}
+          formData={formData}
         />
       );
-    // case 2:
-    //   return (
-    //     <StepsThreForm />
-    //   );
+    case 2:
+      return (
+        <StepsThreForm 
+          itineraries={formData.itinerary}
+          currentPoint={currentPoint}
+          updateFormData={updateFormData}
+        />
+      );
     default:
       return null;
     }
@@ -106,6 +128,8 @@ function FormSteps() {
           handlerSubmit={onSubmit}
           firstStep={isFirstStep}
           lastStep={isLastStep}
+          formData={formData}
+          isSubmitting={isSubmitting}
         />
 
       </div>
