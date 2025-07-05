@@ -32,12 +32,14 @@ export class AppQueryDto {
   @ApiProperty({description: 'Список или строка с указанием хобби',})
   @IsOptional()
   @IsString({each: true})
+  @Transform(({value}) => typeof value === 'string' ? [value] : [...value])
   @IsIn(Object.values(Hobby), {each: true})
   'hobby[]'?: string[];
 
   @ApiProperty({description: 'Список или строка с указанием предпочитаемого стиля музыки',})
   @IsOptional()
   @IsString({each: true})
+  @Transform(({value}) => typeof value === 'string' ? [value] : [...value])
   @IsIn(Object.values(MusicStyle), {each: true})
   'music[]'?: string[];
 
@@ -50,16 +52,19 @@ export class AppQueryDto {
   @ApiProperty({description: 'Список или строка с указанием возможных способов передвижения',})
   @IsOptional()
   @IsString({each: true})
+  @Transform(({value}) => typeof value === 'string' ? [value] : [...value])
   @IsIn(Object.values(Vehicle), {each: true})
   'transport[]'?: string[];
 
   @ApiProperty({description: 'Список с указанием выбранных стран',})
   @IsOptional()
+  @Transform(({value}) => typeof value === 'string' ? [value] : [...value])
   @IsString({each: true})
   'country[]'?: string[];
 
   @ApiProperty({description: 'Список с указанием выбранных континентов',})
   @IsOptional()
+  @Transform(({value}) => typeof value === 'string' ? [value] : [...value])
   @IsString({each: true})
   'continent[]'?: string[];
 
