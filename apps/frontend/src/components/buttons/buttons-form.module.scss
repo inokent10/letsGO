@@ -2,11 +2,15 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @media (max-width: 768px) {
+        flex-direction: column
+    }
 }
 
 .nextButton {
     background-color: #A8D2F4;
-    border-style: none  ;
+    border-style: none;
     border-radius: 15px;
     padding: 20px;
     display: flex;
@@ -37,4 +41,8 @@
 
 .prevButton:hover {
     cursor: pointer;
+}
+
+.disabledButton {
+    opacity: 0.3;
 }

@@ -10,12 +10,13 @@ interface StepTwoFormProps {
   currentPoint: string;
   countries: Country[] | null;
   updateFormData: (data: Partial<ItineraryPlan>) => void;
+  formData: ItineraryPlan;
 };
 
-function StepTwoForm({ currentPoint, countries, updateFormData }: StepTwoFormProps ) {
-  const onCountriesChange = (countries: ItineraryBreakpoint[]) => {
+function StepTwoForm({ currentPoint, countries, updateFormData, formData }: StepTwoFormProps ) {
+  const onCountriesChange = (checkCountries: ItineraryBreakpoint[]) => {
     updateFormData({
-      itinerary: countries,
+      itinerary: checkCountries,
     });
   };
 
@@ -36,6 +37,8 @@ function StepTwoForm({ currentPoint, countries, updateFormData }: StepTwoFormPro
       <SelectCountryInput 
         onCountriesChange={onCountriesChange}
         countries={countries}
+        currentPoint={currentPoint}
+        initialItinerary={formData.itinerary}
       />
     </>
   );

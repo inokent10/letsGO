@@ -1,0 +1,26 @@
+.container {
+    display: flex;
+    padding: 20px 0px;
+    max-width: 800px;
+}
+
+.inputBox {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 16px;
+
+    label {
+        color: #1D2E5B;
+        font-weight: 700;
+        font-size: 25px;
+    }
+
+    textarea {
+        height: 70px;
+        padding: 10px;
+        max-width: 550px;
+        
+        resize: none;
+    }
+}

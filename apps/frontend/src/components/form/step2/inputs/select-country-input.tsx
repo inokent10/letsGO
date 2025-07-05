@@ -1,6 +1,6 @@
 'use client';
-import styles from './select-country-inputs.module.scss';
-import { useState } from 'react';
+import styles from './select-country-input.module.scss';
+import { useEffect, useState } from 'react';
 import { Country } from '@/src/types/country.interface';
 import CountryDropdown from './country-dropdown';
 import { ItineraryBreakpoint } from '@/src/types/itinerary-breakpoint.interface';
@@ -8,11 +8,31 @@ import { ItineraryBreakpoint } from '@/src/types/itinerary-breakpoint.interface'
 interface SelectCountryInputProps {
     onCountriesChange: (countries: ItineraryBreakpoint[]) => void;
     countries: Country[] | null;
+    currentPoint: string;
+    initialItinerary: ItineraryBreakpoint[];
 }
 
-function SelectCountryInput({ onCountriesChange, countries }: SelectCountryInputProps) {
+function SelectCountryInput({ 
+  onCountriesChange,
+  countries,
+  currentPoint,
+  initialItinerary=[],
+}: SelectCountryInputProps) {
   const [selectedBreakpoints, setSelectedBreakpoints] = useState<(ItineraryBreakpoint | null)[]>([null]);
   const [isOpenStates, setIsOpenStates] = useState<boolean[]>([false]);
+  const [isInitialized, setIsInitialized] = useState(false);
+
+  useEffect(() => {
+    if (initialItinerary && initialItinerary.length > 0 && !isInitialized) {
+      const breakpoints: (ItineraryBreakpoint | null)[] = [...initialItinerary];
+      
+      breakpoints.push(null);
+      
+      setSelectedBreakpoints(breakpoints);
+      setIsOpenStates(new Array(breakpoints.length).fill(false));
+      setIsInitialized(true);
+    }
+  }, [initialItinerary, isInitialized]);
 
   const handleCountrySelect = (country: Country, inputIndex: number) => {
     const newBreakpoints: (ItineraryBreakpoint | null)[] = [...selectedBreakpoints];
@@ -92,9 +112,12 @@ function SelectCountryInput({ onCountriesChange, countries }: SelectCountryInput
           onSelect={(country) => handleCountrySelect(country, index)}
           onRemove={() => handleCountryRemove(index)}
           placeholder={index === 0 ? 'Выберите страну' : 'Добавить еще страну'}
+          currentPoint={currentPoint}
           position={index + 1}
           isOpen={isOpenStates[index] || false}
           onOpenClose={(isOpen) => handleOpenClose(index, isOpen)}
+          hasNextItem={index < selectedBreakpoints.length - 1}
+          isLast={index === selectedBreakpoints.length - 2}
         />
       ))}
     </div>

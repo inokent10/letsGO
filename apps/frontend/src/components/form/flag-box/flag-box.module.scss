@@ -1,0 +1,81 @@
+.flagBox {
+    height: 42px;
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.flagImage {
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.flagContainerStepTwo {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+
+    &.hasConnection::after {
+        content: '';
+        position: absolute;
+        left: 80.1%;
+        top: calc(63%);
+        height: 220px; 
+        width: 2px;
+        background-color: #1D2E5B;
+        z-index: 1;
+    }
+    
+    &.isLast::after {
+        display: none;
+    }
+  }
+
+.flagContainerStepThre {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+
+    &.hasConnection::after {
+        content: '';
+        position: absolute;
+        left: 76.9%;
+        height: 220px; 
+        width: 2px;
+        background-color: #1D2E5B;
+        z-index: 1;
+    }
+    
+    &.isLast::after {
+        display: none;
+    }
+  }
+
+.marker {
+    width: 14px;
+    height: 14px;
+    background-color: #1D2E5B;
+    border-radius: 50%;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 2;
+}
+
+.removeButton {
+  background: inherit;
+  border: none;
+  cursor: pointer;
+
+  .closeIcon {
+    stroke: #b2b2b2;
+    stroke-width: 4;
+
+    &:hover {
+      stroke: #1D2E5B;
+    }
+  }
+ 
+}

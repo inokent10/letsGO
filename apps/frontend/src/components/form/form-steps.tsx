@@ -14,6 +14,7 @@ import { useAppSelector, useAppStore } from '@/src/store/hooks';
 import { getCountries } from '@/src/store/tripmates-process/selectors';
 import { uploadCountries } from '@/src/store/tripmates-process/thunk-actions';
 import StepsTwoForm from './step2/steps-two-form';
+import StepsThreForm from './steps3/steps-thre-form';
 
 const initialFormData: ItineraryPlan = {
   tripmatesCount: 0,
@@ -29,7 +30,7 @@ function FormSteps() {
   const store = useAppStore();
   
   const [formData, setFormData] = useState<ItineraryPlan>(initialFormData);
-  const [currentPoint, setCurrentPoint] = useState(POINTS[1]);
+  const [currentPoint, setCurrentPoint] = useState(POINTS[0]);
 
   const currentIndex = POINTS.indexOf(currentPoint);
   const isFirstStep = currentIndex === 0;
@@ -41,7 +42,7 @@ function FormSteps() {
       store.dispatch(uploadCountries());
     }
   });
-
+  
   const updateFormData = (data: Partial<ItineraryPlan>) => {
     setFormData(prev => ({
       ...prev,
@@ -83,12 +84,17 @@ function FormSteps() {
           updateFormData={updateFormData}
           countries={countries} 
           currentPoint={currentPoint}
+          formData={formData}
         />
       );
-    // case 2:
-    //   return (
-    //     <StepsThreForm />
-    //   );
+    case 2:
+      return (
+        <StepsThreForm 
+          itineraries={formData.itinerary}
+          currentPoint={currentPoint}
+          updateFormData={updateFormData}
+        />
+      );
     default:
       return null;
     }
@@ -106,6 +112,7 @@ function FormSteps() {
           handlerSubmit={onSubmit}
           firstStep={isFirstStep}
           lastStep={isLastStep}
+          formData={formData}
         />
 
       </div>
