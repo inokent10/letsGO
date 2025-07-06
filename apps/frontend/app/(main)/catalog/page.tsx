@@ -1,3 +1,5 @@
+'use client';
+
 import './catalog.scss';
 
 import FilterByCountry from '@/src/components/filter-by-country/filter-by-country';

@@ -87,7 +87,7 @@ export class AppRepository {
     }
 
     public saveItinerary(dto: ItineraryDto): UsersWithPagaintion {
-        const countries = dto.itinerary.map((breakpoint) => breakpoint.country)
+        const countries = dto.itinerary.map((breakpoint) => breakpoint.country);
         const slicedFilteredUSers = this.getUsers({"country[]": countries});
         return slicedFilteredUSers;
     }

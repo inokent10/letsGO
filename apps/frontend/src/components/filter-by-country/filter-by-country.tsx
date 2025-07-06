@@ -48,6 +48,14 @@ function FilterByCountry(): JSX.Element {
   };
 
   useEffect(() => {
+    if (query.country && countries) {
+      const itineraryCountries = countries.filter((country) => query.country?.includes(country.name))
+      setSelectedCountries(itineraryCountries);
+      setContinents(itineraryCountries.map((country) => country.location))
+    }
+  }, [])
+
+  useEffect(() => {
     if (selectedCountries.length === 0) {
       dispatch(uploadPageUserCards({ 
         ... query, 
@@ -61,17 +69,17 @@ function FilterByCountry(): JSX.Element {
         country: undefined, 
       }));
     } else {
-      const selecteCountriesNames = selectedCountries.map((country) => country.name)
+      const selectedCountriesNames = selectedCountries.map((country) => country.name)
       dispatch(uploadPageUserCards({ 
         ... query, 
         continent: undefined, 
-        country: selecteCountriesNames, 
+        country: selectedCountriesNames, 
       }));
 
       dispatch(saveQuery({ 
         ... query, 
         continent: undefined, 
-        country: selecteCountriesNames, 
+        country: selectedCountriesNames, 
       }));
     }
     

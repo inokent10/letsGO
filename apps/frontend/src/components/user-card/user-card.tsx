@@ -1,3 +1,4 @@
+'use client';
 
 import { flagIcons, Vehicle } from '@/src/const';
 import './user-card.scss';

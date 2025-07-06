@@ -1,3 +1,5 @@
+'use client';
+
 import FormSteps from '@/src/components/form/form-steps';
 import styles from '../../src/components/form/form-steps.module.scss';
 

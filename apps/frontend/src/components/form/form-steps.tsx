@@ -1,4 +1,5 @@
 'use client';
+
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
@@ -10,11 +11,12 @@ import ButtonsForm from '../buttons/buttons-form';
 import StepsOneForm from './step1/steps-one-form';
 
 import { ItineraryPlan } from '@/src/types/itineraryPlan.interface';
-import { useAppSelector, useAppStore } from '@/src/store/hooks';
+import { useAppDispatch, useAppSelector, useAppStore } from '@/src/store/hooks';
 import { getCountries } from '@/src/store/tripmates-process/selectors';
 import { sendItineraryPlan, uploadCountries } from '@/src/store/tripmates-process/thunk-actions';
 import StepsTwoForm from './step2/steps-two-form';
 import StepsThreForm from './steps3/steps-thre-form';
+import { saveItineraryPlan } from '@/src/store/tripmates-process/tripmates-process';
 
 const initialFormData: ItineraryPlan = {
   tripmatesCount: 0,
@@ -28,6 +30,7 @@ const initialFormData: ItineraryPlan = {
 function FormSteps() {
   const router = useRouter();
   const store = useAppStore();
+  const dispatch = useAppDispatch();
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   
@@ -69,8 +72,11 @@ function FormSteps() {
   const onSubmit = async () => {
     try {
       setIsSubmitting(true);
-      
-      const result = await store.dispatch(sendItineraryPlan(formData));
+       
+      const [,result] = await Promise.all([
+        dispatch(saveItineraryPlan(formData)),
+        dispatch(sendItineraryPlan(formData))
+      ]);
       
       if (sendItineraryPlan.fulfilled.match(result)) {
         router.push(AppRoute.CatalogPage);
