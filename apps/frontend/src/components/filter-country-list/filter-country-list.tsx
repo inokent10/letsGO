@@ -12,7 +12,7 @@ interface FilterCountryListProps {
   onCountryChange: (evt: React.FormEvent<HTMLInputElement>) => void 
 } 
 
-function FilterCountryList({selectedCountries, countries, continents, onCountryChange}: FilterCountryListProps): JSX.Element {    
+function FilterCountryList({ selectedCountries, countries, continents, onCountryChange }: FilterCountryListProps): JSX.Element {    
   return ( 
     <ul className='filter-countries-list clear-list'>
       {   

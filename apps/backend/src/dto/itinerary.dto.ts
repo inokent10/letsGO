@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { Transform, Type } from "class-transformer";
 import { ArrayNotEmpty, IsArray, IsBoolean, IsDateString, IsNumber, ValidateNested } from "class-validator";
 import { UserItineraryDto } from "./user-itinerary.dto";

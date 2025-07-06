@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { ApiProperty } from "@nestjs/swagger";
 import { Hobby, Meal, MusicStyle, USER_MAX_LEVEL, Vehicle } from "backendSettings/settings";
 import { Transform } from "class-transformer";

@@ -1,5 +1,5 @@
 import { Country, User } from "interfaces/interfaces";
-import { Faker, fakerRU as faker } from '@faker-js/faker';
+import { fakerRU as faker } from '@faker-js/faker';
 import { Hobby, Meal, MusicStyle, Vehicle } from "backendSettings/settings";
 import { getRandomInteger } from "helpers/helpers";
 import { getRanndomElement } from "helpers/helpers/common";

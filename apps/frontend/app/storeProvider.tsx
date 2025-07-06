@@ -1,6 +1,5 @@
 'use client';
 import { AppStore, makeStore } from '@/src/store/store';
-import { uploadCountries } from '@/src/store/tripmates-process/thunk-actions';
 import { useRef } from 'react';
 import { Provider } from 'react-redux';
 

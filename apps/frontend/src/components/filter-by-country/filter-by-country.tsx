@@ -26,7 +26,7 @@ function FilterByCountry(): JSX.Element {
     } else {
       setSelectedCountries(selectedCountries.filter((country) => country.name !== evt.currentTarget.value));
     }
-  }
+  };
 
   const continentChangeHandler = (evt: React.FormEvent<HTMLInputElement>) => {  
     if (isRolledUp && continents.includes(evt.currentTarget.value)) {
@@ -44,16 +44,17 @@ function FilterByCountry(): JSX.Element {
     }
     
     setContinents(newContinents);
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     (newContinents.length > 0) ? setIsRolledUp(false) : setIsRolledUp(true);
   };
 
   useEffect(() => {
     if (query.country && countries) {
-      const itineraryCountries = countries.filter((country) => query.country?.includes(country.name))
+      const itineraryCountries = countries.filter((country) => query.country?.includes(country.name));
       setSelectedCountries(itineraryCountries);
-      setContinents(itineraryCountries.map((country) => country.location))
+      setContinents(itineraryCountries.map((country) => country.location));
     }
-  }, [])
+  }, [countries, query.country]);
 
   useEffect(() => {
     if (selectedCountries.length === 0) {
@@ -69,7 +70,7 @@ function FilterByCountry(): JSX.Element {
         country: undefined, 
       }));
     } else {
-      const selectedCountriesNames = selectedCountries.map((country) => country.name)
+      const selectedCountriesNames = selectedCountries.map((country) => country.name);
       dispatch(uploadPageUserCards({ 
         ... query, 
         continent: undefined, 
@@ -83,7 +84,7 @@ function FilterByCountry(): JSX.Element {
       }));
     }
     
-  }, [continents, selectedCountries])
+  }, [continents, dispatch, query, selectedCountries]);
 
   return (
     <section className='country-filter'>
@@ -151,11 +152,11 @@ function FilterByCountry(): JSX.Element {
         {
           !isRolledUp &&
           <button 
-          className='country-filter-rollup-button'
-          onClick={() => setIsRolledUp(true)}
-        >
-          <span className='rollup-button-text'>Свернуть</span>
-        </button>
+            className='country-filter-rollup-button'
+            onClick={() => setIsRolledUp(true)}
+          >
+            <span className='rollup-button-text'>Свернуть</span>
+          </button>
         }
         
         

@@ -23,7 +23,7 @@ const tripmatesProcess = createSlice({
   reducers: {
     saveItineraryPlan: (state, action: PayloadAction<ItineraryPlan>) => {
       state.itineraryPlan = action.payload;
-      state.query = { ...state.query, country: action.payload.itinerary.map((breakPoint) => breakPoint.country)};
+      state.query = { ...state.query, country: action.payload.itinerary.map((breakPoint) => breakPoint.country) };
     },
     saveQuery: (state, action: PayloadAction<Query>) => {
       state.query = { ...state.query, ...action.payload };
