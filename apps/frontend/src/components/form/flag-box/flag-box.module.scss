@@ -24,35 +24,69 @@
         left: 80.1%;
         top: calc(63%);
         height: 220px; 
-        width: 2px;
-        background-color: #1D2E5B;
+        width: 1px;
+        background-color: #E1E3E9;
         z-index: 1;
     }
     
     &.isLast::after {
         display: none;
     }
-  }
+}
 
 .flagContainerStepThre {
     display: flex;
     justify-content: space-between;
     gap: 20px;
+    position: relative;
 
     &.hasConnection::after {
-        content: '';
-        position: absolute;
-        left: 76.9%;
-        height: 220px; 
-        width: 2px;
-        background-color: #1D2E5B;
-        z-index: 1;
-    }
-    
-    &.isLast::after {
-        display: none;
-    }
+      content: '';
+      position: absolute;
+      left: 700px;;
+      top: calc(100% - 26px);
+      height: 200px; 
+      width: 1px;
+      background-color: #1D2E5B;
+      z-index: 1;
+      transform: translateX(-50%);
   }
+  
+  &.isLast::after {
+      display: none;
+  }
+}
+
+.notSelected {
+  display: flex;
+  gap: 113px;
+  align-items: center;
+
+  &.hasConnection::after {
+      content: '';
+      position: absolute;
+      left: 80.1%;
+      top: calc(63%);
+      height: 220px; 
+      width: 1px;
+      background-color: #CBCED9;
+      z-index: 1;
+  }
+  
+  &.isLast::after {
+      display: none;
+  }
+
+  .notSelectedMarker {
+    width: 14px;
+    height: 14px;
+    background-color: #CBCED9;
+    border-radius: 50%;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 2;
+  }
+}
 
 .marker {
     width: 14px;

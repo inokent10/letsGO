@@ -35,7 +35,7 @@ function FormSteps() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   
   const [formData, setFormData] = useState<ItineraryPlan>(initialFormData);
-  const [currentPoint, setCurrentPoint] = useState(POINTS[0]);
+  const [currentPoint, setCurrentPoint] = useState(POINTS[1]);
 
   const currentIndex = POINTS.indexOf(currentPoint);
   const isFirstStep = currentIndex === 0;
@@ -75,7 +75,7 @@ function FormSteps() {
        
       const [,result] = await Promise.all([
         dispatch(saveItineraryPlan(formData)),
-        dispatch(sendItineraryPlan(formData))
+        dispatch(sendItineraryPlan(formData)),
       ]);
       
       if (sendItineraryPlan.fulfilled.match(result)) {
