@@ -27,7 +27,7 @@ function OpenButton({
   return (
     <div className={styles.inputContainer}>
       <button 
-        className={`${styles.input} ${!selectedCountry ? styles.margin : ''}`}
+        className={styles.input}
         onClick={handleToggleOpen}
         type='button'
       >
@@ -43,16 +43,14 @@ function OpenButton({
         </span>
       </button>
 
-      {selectedCountry && (
-        <FlagBox 
-          countryName={selectedCountry.name}
-          handleRemoveCountry={handleRemoveCountry}
-          currentPoint={currentPoint}
-          hasNextItem={hasNextItem}
-          isLast={isLast}
-          position={position}
-        />
-      )}
+      <FlagBox 
+        countryName={selectedCountry ? selectedCountry.name : ''}
+        handleRemoveCountry={handleRemoveCountry}
+        currentPoint={currentPoint}
+        hasNextItem={hasNextItem}
+        isLast={isLast}
+        position={position}
+      />
     </div>
   );
 };
