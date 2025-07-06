@@ -9,7 +9,7 @@ Content-Type: application/json
 
 {
     "tripmatesCount": "3",
-    "tripDuration": "25",
+    "tripDuration": "2",
     "isChildrenAccepted": "false",
     "startDate": "2025-07-06",
     "finishDate": "2025-07-07",    

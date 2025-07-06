@@ -42,11 +42,19 @@ export class AppRepository {
             if (query['continent[]'] && !user.countries.some((item) => query['continent[]']?.includes(item.location))) {
                 return false
             }
-            if (query['country[]'] && !query['country[]'].every((item) => user.countries.map((country) => country.name).includes(item))) {
-                return false
-            }
+            
             return true
         })
+    }
+
+    public sortUsers(query: AppQueryDto, users: User[]): User[] {
+        users.sort((userA, userB) => {
+            const userARelations = userA.countries.filter(country => query["country[]"]?.includes(country.name));
+            const userBRelations = userB.countries.filter(country => query["country[]"]?.includes(country.name));
+            return userBRelations.length - userARelations.length; 
+        })
+
+        return users;
     }
 
     public getUsers(query?: AppQueryDto): UsersWithPagaintion {  
@@ -55,7 +63,8 @@ export class AppRepository {
         const page = query?.page ?? DEFAULT_PAGE_NUMBER;
         const take =  limit * page - count;
         const filteredUsers = (query) ? this.filterUsers(query) : this.users;
-        const slicedUsers = filteredUsers.slice(take, limit * page);    
+        const sortedUsers = (query?.["country[]"]) ? this.sortUsers(query, filteredUsers) : filteredUsers;
+        const slicedUsers = sortedUsers.slice(take, limit * page);    
 
         return {
             entities: slicedUsers,
