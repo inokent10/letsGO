@@ -37,14 +37,6 @@ function FlagBox({ countryName, position, handleRemoveCountry, currentPoint, has
             />
           </div>
       }
-      {/* <div className={styles.flagBox}>
-        <div className={styles.marker}></div>
-        <img 
-          className={styles.flagImage}
-          src={'https://flagcdn.com/un.svg'} 
-          alt={`Флаг ${countryName}`}
-        />
-      </div> */}
 
       {currentPoint === POINTS[1] && 
       <div className={`${countryName === '' ? styles.notSelected : ''}`}>
