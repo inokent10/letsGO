@@ -54,7 +54,8 @@ function FilterByCountry(): JSX.Element {
       setSelectedCountries(itineraryCountries);
       setContinents(itineraryCountries.map((country) => country.location));
     }
-  }, [countries, query.country]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (selectedCountries.length === 0) {
@@ -84,7 +85,8 @@ function FilterByCountry(): JSX.Element {
       }));
     }
     
-  }, [continents, dispatch, query, selectedCountries]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [continents, selectedCountries]);
 
   return (
     <section className='country-filter'>
