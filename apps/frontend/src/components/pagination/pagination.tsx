@@ -41,11 +41,15 @@ function Pagination(): JSX.Element {
     
   return (
     <section className='catalog-pagination'>
-      <button 
-        className='pagination-more-button' 
-        type='button'
-        onClick={moreButtonClickHandler}
-      >Показать ещё</button>
+      {
+        paginatedUsers &&
+        paginatedUsers.currentPage < paginatedUsers.totalPages &&
+        <button 
+          className='pagination-more-button' 
+          type='button'
+          onClick={moreButtonClickHandler}
+        >Показать ещё</button>
+      }
       <div className='pagination-pages'>
         <ul className='pages-list clear-list'>
           {
