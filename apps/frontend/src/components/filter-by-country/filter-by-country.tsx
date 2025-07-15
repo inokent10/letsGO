@@ -5,7 +5,7 @@ import './filter-by-country.scss';
 import { Continent } from '@/src/const';
 import { useAppDispatch, useAppSelector } from '@/src/store/hooks';
 import { getCountries, getQuery } from '@/src/store/tripmates-process/selectors';
-import { uploadPageUserCards } from '@/src/store/tripmates-process/thunk-actions';
+import { uploadCountries, uploadPageUserCards } from '@/src/store/tripmates-process/thunk-actions';
 import { saveQuery } from '@/src/store/tripmates-process/tripmates-process';
 import { useEffect, useState, type JSX } from 'react';
 import FilterCountryList from '../filter-country-list/filter-country-list';
@@ -53,6 +53,8 @@ function FilterByCountry(): JSX.Element {
       const itineraryCountries = countries.filter((country) => query.country?.includes(country.name));
       setSelectedCountries(itineraryCountries);
       setContinents(itineraryCountries.map((country) => country.location));
+    } else {
+      dispatch(uploadCountries());
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

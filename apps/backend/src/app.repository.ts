@@ -42,6 +42,9 @@ export class AppRepository {
             if (query['continent[]'] && !user.countries.some((item) => query['continent[]']?.includes(item.location))) {
                 return false
             }
+            if (query['country[]'] && !query['country[]'].some((item) => user.countries.map((country) => country.name).includes(item))) {
+                return false
+            }
             
             return true
         })

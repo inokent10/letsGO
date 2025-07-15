@@ -1,4 +1,4 @@
-// File: /Users/karen/Desktop/lets-go/letsGO/apps/frontend/app/(main)/catalog/page.tsx
+// File: I:\Новая папка\letsGO\apps\frontend\app\(main)\catalog\page.tsx
 import * as entry from '../../../../../app/(main)/catalog/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
